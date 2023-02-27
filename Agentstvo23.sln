@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agentstvo23", "Agentstvo23\Agentstvo23.csproj", "{19DA9C32-EFA1-4AE0-9D38-5EF89A1AA0AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agentstvo23", "Agentstvo23\Agentstvo23.csproj", "{19DA9C32-EFA1-4AE0-9D38-5EF89A1AA0AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agentstvo23.DAL", "Agentstvo23.DAL\Agentstvo23.DAL.csproj", "{2A8B61AB-1C30-49D1-B92D-A5CC78EBB881}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agentstvo23.DAL", "Agentstvo23.DAL\Agentstvo23.DAL.csproj", "{2A8B61AB-1C30-49D1-B92D-A5CC78EBB881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agentstvo23.Interfaces", "Agentstvo23.Interfaces\Agentstvo23.Interfaces.csproj", "{631CC2C3-3118-47AD-BE6C-E3A0B781D63E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2A8B61AB-1C30-49D1-B92D-A5CC78EBB881}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A8B61AB-1C30-49D1-B92D-A5CC78EBB881}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A8B61AB-1C30-49D1-B92D-A5CC78EBB881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{631CC2C3-3118-47AD-BE6C-E3A0B781D63E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631CC2C3-3118-47AD-BE6C-E3A0B781D63E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{631CC2C3-3118-47AD-BE6C-E3A0B781D63E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{631CC2C3-3118-47AD-BE6C-E3A0B781D63E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
