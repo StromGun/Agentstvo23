@@ -8,7 +8,12 @@
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="{Binding Title}" Height="450" Width="800">
     <Grid>
-        
-        
+        <Grid DockPanel.Dock="Top" Background="Aqua" HorizontalAlignment="Stretch" MaxHeight="50">
+            <Image Source="/Resources/Images/location_city.png" MaxHeight="50" HorizontalAlignment="Left"/>
+            <TextBlock Text="HIHI" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+        <ContentControl Content="{Binding CurrentView}"/>
+
     </Grid>
 </Window>
