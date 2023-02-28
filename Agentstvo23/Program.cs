@@ -17,12 +17,12 @@ namespace Agentstvo23
             app.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-             Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((host, cfg) => cfg
-                .SetBasePath(Environment.CurrentDirectory)
-                .AddJsonFile("appsettings.json",optional: true, reloadOnChange: true))
-                .ConfigureServices(App.ConfigureServices);
+        public static IHostBuilder CreateHostBuilder(string[] args) => Host
+            .CreateDefaultBuilder(args)
+            //.ConfigureAppConfiguration((host, cfg) => cfg
+            //.SetBasePath(Environment.CurrentDirectory)
+            //.AddJsonFile("appsettings.json",optional: true, reloadOnChange: true))
+            .ConfigureServices(App.ConfigureServices);
 
     }
 }

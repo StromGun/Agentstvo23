@@ -2,15 +2,27 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
+using System;
 
 namespace Agentstvo23.Data
 {
     static class DbRegistrator
     {
-        public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration) => services
+        public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration Configuration) => services
             .AddDbContext<RealEstateDB>(opt =>
             {
-                opt.UseSqlServer(configuration.GetConnectionString("MSSQL"));
-            });
+                var type = Configuration["Type"];
+                switch (type)
+                {
+                    case null: throw new InvalidOperationException("Не определён тип БД");
+                    default: throw new InvalidOperationException($"Тип подключения {type} не поддерживается");
+
+                    case "MSSQL":
+                        opt.UseSqlServer(Configuration.GetConnectionString(type));
+                        break;
+                }
+            })
+            .AddTransient<DBInitializer>();
     }
 }
