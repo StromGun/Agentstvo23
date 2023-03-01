@@ -13,20 +13,30 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <WrapPanel Orientation="Horizontal" Grid.Column="0" Margin="0" ItemHeight="125" ItemWidth="125">
-                <Button Style="{StaticResource NavigationBtn}">
-                    <Button.Content>
-                        <StackPanel HorizontalAlignment="Stretch">
-                            <Image Source="/Resources/Images/location_city.png" MaxHeight="90"/>
-                            <TextBlock Text="City" HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+            <Border BorderBrush="Black" BorderThickness="0 0 1 0">
+                <WrapPanel Orientation="Horizontal" Grid.Column="0" Margin="0" ItemHeight="125" ItemWidth="125">
+                    <Button Style="{StaticResource NavigationBtn}">
+                        <Button.Content>
+                            <StackPanel HorizontalAlignment="Stretch">
+                                <Image Source="/Resources/Images/location_city.png" MaxHeight="90"/>
+                                <TextBlock Text="City" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
 
-                <Button Style="{StaticResource NavigationBtn}"/>
-                <Button Style="{StaticResource NavigationBtn}"/>
-                <Button Style="{StaticResource NavigationBtn}"/>
-            </WrapPanel>
+                    <Button Style="{StaticResource NavigationBtn}"/>
+                    <Button Style="{StaticResource NavigationBtn}"/>
+                    <Button Style="{StaticResource NavigationBtn}"/>
+                </WrapPanel>
+            </Border>
+
+            <StackPanel Grid.Column="1">
+                <TextBlock>Количество недвижимости: <Run Text="{Binding CountEstate}" FontWeight="Bold"/></TextBlock>
+                <TextBlock>Количество нежилых зданий: <Run Text="{Binding CountNonResidentialBuilding}" FontWeight="Bold"/></TextBlock>
+                <TextBlock>Количество жилых домов: <Run Text="{Binding CountResidentialBuilding}" FontWeight="Bold"/></TextBlock>
+                <TextBlock>Количество многоквартиных домов: <Run Text="{Binding CountApartmentBuilding}" FontWeight="Bold"/></TextBlock>
+            </StackPanel>
+            
         </Grid>
 
     </Grid>

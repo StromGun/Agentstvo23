@@ -1,9 +1,5 @@
-﻿using Agentstvo23.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Agentstvo23.DAL.Context;
+using Agentstvo23.ViewModels.Base;
 
 namespace Agentstvo23.ViewModels
 {
@@ -13,6 +9,14 @@ namespace Agentstvo23.ViewModels
         private ViewModel currentView;
 
         public string Title { get => _title; set => Set(ref _title, value); }
-        public ViewModel CurrentView { get => CurrentView; set => Set(ref currentView, value); }
+        public ViewModel CurrentView { get => currentView; set => Set(ref currentView, value); }
+        public RealEstateDB DataBase { get; set; }
+
+
+        public MainWindowViewModel(RealEstateDB db)
+        {
+            DataBase = db;
+            CurrentView = new NavigationViewModel(this, DataBase);
+        }
     }
 }

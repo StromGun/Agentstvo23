@@ -14,8 +14,14 @@ namespace Agentstvo23
     {
         private static IHost __Host;
 
-        public static IServiceProvider Services => Host.Services;
         public static IHost Host => __Host ??= Program.CreateHostBuilder(Environment.GetCommandLineArgs()).Build();
+
+        public static IServiceProvider Services => Host.Services;
+
+        internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
+            .AddDatabase(host.Configuration.GetSection("Database"))
+            .AddViewModels();
+            //services.AddSingleton<>();
 
 
         protected override async void OnStartup(StartupEventArgs e)
@@ -38,9 +44,5 @@ namespace Agentstvo23
             __Host = null;
         }
 
-        public static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
-            .AddDatabase(host.Configuration.GetSection("Database"))
-            .AddViewModels();
-            //services.AddSingleton<>();
     }
 }

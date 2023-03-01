@@ -13,5 +13,7 @@
         public int YearBuilt { get; set; }
         public int Floors { get; set; }
         public int? UndergroundFloors { get; set; }
+
+        public List<BuildingExtended> BuildingExtendeds { get; set; } = new();
     }
 }

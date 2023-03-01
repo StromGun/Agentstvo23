@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
 using System;
 
 namespace Agentstvo23.Data
@@ -19,10 +18,12 @@ namespace Agentstvo23.Data
                     default: throw new InvalidOperationException($"Тип подключения {type} не поддерживается");
 
                     case "MSSQL":
-                        opt.UseSqlServer(Configuration.GetConnectionString(type));
+                        opt.UseSqlServer(Configuration.GetConnectionString(type), x => x.UseNetTopologySuite());
                         break;
                 }
+
             })
-            .AddTransient<DBInitializer>();
+            .AddTransient<DBInitializer>()
+            ;
     }
 }

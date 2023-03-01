@@ -14,12 +14,12 @@ namespace Agentstvo23.Data
         public DBInitializer(RealEstateDB db)
         {
             _db = db;
-            GetBuildingsData();
+            //GetBuildingsData();
         }
 
         private IEnumerable<string> GetLines()
         {
-            using (var reader = new StreamReader(@"C:\Users\StormGun\Desktop\Кадастровая стоимость зданий - Тверской район.csv"))
+            using (var reader = new StreamReader(@"D:\Downloads\kads.csv"))
             {
                 while (!reader.EndOfStream)
                 {
@@ -40,7 +40,7 @@ namespace Agentstvo23.Data
             {
                 var building = new Building
                 {
-                    Id = Convert.ToInt32(line[0].Trim()),
+                    //Id = Convert.ToInt32(line[0].Trim()),
                     CadastralNumber = line[1].Trim(),
                     Adress = line[2].Trim(),
                     Area = Convert.ToDouble(line[3].Trim()),
@@ -49,12 +49,13 @@ namespace Agentstvo23.Data
                     AssignationBuilding = line[6].Trim(),
                     CadastralBlock = line[7].Trim(),
                     YearBuilt = Convert.ToInt32(line[8].Trim()),
-                    Floors = Convert.ToInt32(line[9].Trim())
-
+                    Floors = Convert.ToInt32(line[10].Trim()),
+                    UndergroundFloors = Convert.ToInt32(line[11].Trim())
+                    
                 };
                 _db.Buildings.Add(building);
-                _db.SaveChanges();
             }
+                _db.SaveChanges();
         }
     }
 }
