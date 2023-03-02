@@ -1,4 +1,5 @@
 ﻿using Agentstvo23.DAL.Context;
+using Agentstvo23.Infrastructure.Commands;
 using Agentstvo23.ViewModels.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Agentstvo23.ViewModels
 {
@@ -17,7 +19,7 @@ namespace Agentstvo23.ViewModels
         private int countResidentialBuilding;
         private int countApartmentBuilding;
 
-        public ViewModel MainModel { get; set; }
+        public MainWindowViewModel MainModel { get; set; }
         public string Title { get => _title; set => Set(ref _title, value); }
         public RealEstateDB DataBase { get; set; }
 
@@ -27,13 +29,27 @@ namespace Agentstvo23.ViewModels
         public int CountResidentialBuilding { get => countResidentialBuilding; set => Set(ref countResidentialBuilding, value); }
         public int CountApartmentBuilding { get => countApartmentBuilding; set => Set(ref countApartmentBuilding, value); }
 
+
+
+        private LambdaCommand? _ShowRealEstatesView;
+        public ICommand ShowRealEstatesView => _ShowRealEstatesView
+            ??= new(ShowRealEstatesViewExecuted);
+
+        private void ShowRealEstatesViewExecuted()
+        {
+            MainModel.CurrentView = new RealEstatesViewModel(MainModel, DataBase);
+        }
+
+
         public NavigationViewModel(MainWindowViewModel mainModel, RealEstateDB db)
         {
             DataBase = db;
             MainModel = mainModel;
 
-            GetCounts().ConfigureAwait(false);
+            _ = GetCounts();
         }
+
+
 
         private async Task GetCounts()
         {

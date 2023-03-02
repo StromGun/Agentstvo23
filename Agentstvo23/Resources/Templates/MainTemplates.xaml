@@ -7,6 +7,9 @@
     <DataTemplate DataType="{x:Type vm:NavigationViewModel}">
         <view:NavigationView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:RealEstatesViewModel}">
+        <view:RealEstatesView/>
+    </DataTemplate>
     
     
 </ResourceDictionary>
