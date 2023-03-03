@@ -19,9 +19,9 @@ namespace Agentstvo23.ViewModels
         private int countResidentialBuilding;
         private int countApartmentBuilding;
 
-        public MainWindowViewModel MainModel { get; set; }
+        public MainWindowViewModel MainModel { get; internal set; }
         public string Title { get => _title; set => Set(ref _title, value); }
-        public RealEstateDB DataBase { get; set; }
+        private readonly RealEstateDB DataBase;
 
 
         public int CountEstate { get => countEstate; set => Set(ref countEstate, value); }
@@ -37,19 +37,16 @@ namespace Agentstvo23.ViewModels
 
         private void ShowRealEstatesViewExecuted()
         {
-            MainModel.CurrentView = new RealEstatesViewModel(MainModel, DataBase);
+            MainModel.CurrentView = MainModel.BuildingsVm;
         }
 
 
-        public NavigationViewModel(MainWindowViewModel mainModel, RealEstateDB db)
+        public NavigationViewModel(RealEstateDB db)
         {
             DataBase = db;
-            MainModel = mainModel;
 
-            _ = GetCounts();
+            GetCounts();
         }
-
-
 
         private async Task GetCounts()
         {

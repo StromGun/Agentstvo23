@@ -10,13 +10,28 @@ namespace Agentstvo23.ViewModels
 
         public string Title { get => _title; set => Set(ref _title, value); }
         public ViewModel CurrentView { get => currentView; set => Set(ref currentView, value); }
-        public RealEstateDB DataBase { get; set; }
+        private readonly RealEstateDB DataBase;
 
 
-        public MainWindowViewModel(RealEstateDB db)
+        public NavigationViewModel NavigationVm { get; }
+        public RealEstatesViewModel BuildingsVm { get; }
+
+
+        public MainWindowViewModel(
+            RealEstateDB db,
+            RealEstatesViewModel buildingsVm,
+            NavigationViewModel Navigation
+            )
         {
             DataBase = db;
-            CurrentView = new NavigationViewModel(this, DataBase);
+            NavigationVm = Navigation;
+            NavigationVm.MainModel = this;
+
+            BuildingsVm = buildingsVm;
+            BuildingsVm.MainModel = this;
+
+
+            CurrentView = NavigationVm;
         }
     }
 }

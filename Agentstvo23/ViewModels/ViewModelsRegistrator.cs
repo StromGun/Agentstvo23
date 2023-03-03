@@ -7,6 +7,7 @@ namespace Agentstvo23.ViewModels
         public static IServiceCollection AddViewModels(this IServiceCollection services) => services
             .AddTransient<MainWindowViewModel>()
             .AddTransient<NavigationViewModel>()
+            .AddTransient<RealEstatesViewModel>()
             ;
     }
 }

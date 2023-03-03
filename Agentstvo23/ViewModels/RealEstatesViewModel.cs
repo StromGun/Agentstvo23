@@ -14,16 +14,15 @@ namespace Agentstvo23.ViewModels
     internal class RealEstatesViewModel : ViewModel
     {
         private string _title = "Недвижимости";
-        private ViewModel MainModel;
-        private RealEstateDB DataBase;
+        private readonly RealEstateDB DataBase;
         private ObservableCollection<Building> buildings;
 
         public string Title { get => _title; set => Set(ref _title, value); }
-        public ObservableCollection<Building> Buildings { get => buildings; set => Set(ref buildings,value); }
+        public ObservableCollection<Building> BuildingsList { get => buildings; set => Set(ref buildings,value); }
+        public MainWindowViewModel MainModel { get; internal set; }
 
-        public RealEstatesViewModel(MainWindowViewModel mainModel, RealEstateDB db)
+        public RealEstatesViewModel(RealEstateDB db)
         {
-            MainModel = mainModel;
             DataBase = db;
 
 
@@ -34,7 +33,7 @@ namespace Agentstvo23.ViewModels
         private async Task GetData()
         {
             await DataBase.Buildings.LoadAsync();
-            Buildings = DataBase.Buildings.Local.ToObservableCollection();
+            BuildingsList = DataBase.Buildings.Local.ToObservableCollection();
         }
 
     }
