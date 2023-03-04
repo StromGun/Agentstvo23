@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace Agentstvo23.ViewModels
 {
-    internal class NavigationViewModel : ViewModel
+    internal class NavigationViewModel : ViewModel, INavigationViewModel
     {
         private string _title = "Навигация";
         private int countEstate;
@@ -19,34 +19,37 @@ namespace Agentstvo23.ViewModels
         private int countResidentialBuilding;
         private int countApartmentBuilding;
 
-        public MainWindowViewModel MainModel { get; internal set; }
         public string Title { get => _title; set => Set(ref _title, value); }
         private readonly RealEstateDB DataBase;
 
 
+        #region Counts
         public int CountEstate { get => countEstate; set => Set(ref countEstate, value); }
         public int CountNonResidentialBuilding { get => countNonResidentialBuilding; set => Set(ref countNonResidentialBuilding, value); }
         public int CountResidentialBuilding { get => countResidentialBuilding; set => Set(ref countResidentialBuilding, value); }
         public int CountApartmentBuilding { get => countApartmentBuilding; set => Set(ref countApartmentBuilding, value); }
+        #endregion
 
 
 
+        #region Commands
         private LambdaCommand? _ShowRealEstatesView;
         public ICommand ShowRealEstatesView => _ShowRealEstatesView
             ??= new(ShowRealEstatesViewExecuted);
 
         private void ShowRealEstatesViewExecuted()
         {
-            MainModel.CurrentView = MainModel.BuildingsVm;
+            //MainModel.CurrentView = MainModel.BuildingsVm;
         }
 
+        #endregion
 
         public NavigationViewModel(RealEstateDB db)
         {
             DataBase = db;
-
-            GetCounts();
         }
+
+
 
         private async Task GetCounts()
         {
@@ -54,6 +57,13 @@ namespace Agentstvo23.ViewModels
             CountNonResidentialBuilding = await DataBase.Buildings.Where(p => p.AssignationBuilding == "Нежилое здание").CountAsync();
             CountResidentialBuilding = await DataBase.Buildings.Where(p => p.AssignationBuilding == "Жилой дом").CountAsync();
             CountApartmentBuilding = await DataBase.Buildings.Where(p => p.AssignationBuilding == "Многоквартирный дом").CountAsync();
+        }
+
+
+
+        public async Task LoadAsync()
+        {
+            await GetCounts();
         }
     }
 }
