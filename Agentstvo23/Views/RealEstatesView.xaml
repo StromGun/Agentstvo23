@@ -16,70 +16,72 @@
     </i:Interaction.Triggers>
     <DockPanel>
         
-        <StackPanel DockPanel.Dock="Top" >
+        <StackPanel DockPanel.Dock="Top" Margin="5">
             <StackPanel Orientation="Horizontal">
-                <Button>
+                <Button Style="{StaticResource BtnImage}">
                     <Button.Content>
                         <Image Source="/Resources/Images/add.png" Height="25"/>
                     </Button.Content>
                 </Button>
-                <Button>
+                <Button Style="{StaticResource BtnImage}">
                     <Image Source="/Resources/Images/refresh.png" Height="25" />
                 </Button>
-                <Button/>
+
+                <Button Style="{StaticResource BtnImage}"/>
+                
                 <TextBox/>
                 <ComboBox/>
             </StackPanel>
             
             <Expander Header="Дополнительно">
-                <WrapPanel Orientation="Horizontal">
-                    <StackPanel>
+                <WrapPanel Orientation="Horizontal" ItemWidth="150">
+                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Адрес" Style="{StaticResource TblockCommon}"/>
                         <TextBox Style="{StaticResource TboxCommon}"/>
                     </StackPanel>
-                    
-                    <StackPanel>
+
+                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
                         <TextBox Style="{StaticResource TboxCommon}"/>
                     </StackPanel>
-                    
-                    <StackPanel>
+
+                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Количество подземных этажей" Style="{StaticResource TblockCommon}"/>
                         <TextBox Style="{StaticResource TboxCommon}"/>
                     </StackPanel>
 
-                    <StackPanel>
+                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
                         <TextBox Style="{StaticResource TboxCommon}"/>
                     </StackPanel>
 
-                    <StackPanel>
+                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
                         <TextBox Style="{StaticResource TboxCommon}"/>
                     </StackPanel>
 
-                    <StackPanel>
-                        <TextBlock Text="Площадь" Style="{StaticResource TblockCommon}"/>
-                        <StackPanel Orientation="Horizontal">
+                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
+                        <TextBlock Text="Площадь" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
+                        <WrapPanel ItemWidth="70">
                             <TextBox Style="{StaticResource TboxCommon}"/>
                             <TextBox Style="{StaticResource TboxCommon}"/>
-                        </StackPanel>
-                    </StackPanel>
-                    
-                    <StackPanel>
-                        <TextBlock Text="Цена за метр" Style="{StaticResource TblockCommon}"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBox Style="{StaticResource TboxCommon}"/>
-                            <TextBox Style="{StaticResource TboxCommon}"/>
-                        </StackPanel>
+                        </WrapPanel>
                     </StackPanel>
 
-                    <StackPanel>
-                        <TextBlock Text="Кадастровая стоимость" Style="{StaticResource TblockCommon}"/>
-                        <StackPanel Orientation="Horizontal">
+                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
+                        <TextBlock Text="Цена за метр" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
+                        <WrapPanel ItemWidth="70">
                             <TextBox Style="{StaticResource TboxCommon}"/>
                             <TextBox Style="{StaticResource TboxCommon}"/>
-                        </StackPanel>
+                        </WrapPanel>
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
+                        <TextBlock Text="Кадастровая стоимость" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
+                        <WrapPanel ItemWidth="70">
+                            <TextBox Style="{StaticResource TboxCommon}" />
+                            <TextBox Style="{StaticResource TboxCommon}" />
+                        </WrapPanel>
                     </StackPanel>
 
                 </WrapPanel>
@@ -88,7 +90,7 @@
         </StackPanel>
  
         <DataGrid ItemsSource="{Binding BuildingsList}"  Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single"
-                  IsReadOnly="True" AutoGenerateColumns="False">
+                  IsReadOnly="True" AutoGenerateColumns="False" Margin="5 0">
             
             <DataGrid.Resources>
                 <ContextMenu  x:Key="CtxMenu">

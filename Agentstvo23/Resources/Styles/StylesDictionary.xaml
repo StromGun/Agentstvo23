@@ -8,12 +8,23 @@
         <Setter Property="BorderBrush" Value="White"/>
     </Style>
 
+    <Style TargetType="Button" x:Key="BtnImage">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Background" Value="{StaticResource ColorAccentAlt}"/>
+    </Style>
+    
+
     <Style TargetType="TextBlock" x:Key="TblockCommon">
-        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Margin" Value="5 0 5 0"/>
     </Style>
 
     <Style TargetType="TextBox" x:Key="TboxCommon">
         <Setter Property="Margin" Value="5"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+
+    <Style TargetType="StackPanel" x:Key="StackPanel-Margin5">
+        <Setter Property="Margin" Value="5 0"/>
     </Style>
     
 </ResourceDictionary>
