@@ -1,5 +1,7 @@
 ﻿using Agentstvo23.DAL.Context;
 using Agentstvo23.Infrastructure.Commands;
+using Agentstvo23.Services;
+using Agentstvo23.Services.Interfaces;
 using Agentstvo23.ViewModels.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,8 +22,10 @@ namespace Agentstvo23.ViewModels
         private int countApartmentBuilding;
 
         public string Title { get => _title; set => Set(ref _title, value); }
-        private readonly RealEstateDB DataBase;
+        public MainWindowViewModel MainModel { get; internal set; }
 
+        private readonly RealEstateDB DataBase;
+        private readonly IBuildingCount BuildingCountService;
 
         #region Counts
         public int CountEstate { get => countEstate; set => Set(ref countEstate, value); }
@@ -39,31 +43,24 @@ namespace Agentstvo23.ViewModels
 
         private void ShowRealEstatesViewExecuted()
         {
-            //MainModel.CurrentView = MainModel.BuildingsVm;
+            MainModel.CurrentView = MainModel.BuildingsVm;
         }
 
         #endregion
 
-        public NavigationViewModel(RealEstateDB db)
+        public NavigationViewModel(RealEstateDB db, IBuildingCount buildingCountService)
         {
             DataBase = db;
+            BuildingCountService = buildingCountService;
         }
-
-
-
-        private async Task GetCounts()
-        {
-            countEstate = await DataBase.Buildings.CountAsync();
-            CountNonResidentialBuilding = await DataBase.Buildings.Where(p => p.AssignationBuilding == "Нежилое здание").CountAsync();
-            CountResidentialBuilding = await DataBase.Buildings.Where(p => p.AssignationBuilding == "Жилой дом").CountAsync();
-            CountApartmentBuilding = await DataBase.Buildings.Where(p => p.AssignationBuilding == "Многоквартирный дом").CountAsync();
-        }
-
 
 
         public async Task LoadAsync()
         {
-            await GetCounts();
+            CountEstate = BuildingCountService.GetCount();
+            countNonResidentialBuilding = BuildingCountService.GetNonResidentalCount();
+            countResidentialBuilding = BuildingCountService.GetResidentalCount();
+            countApartmentBuilding = BuildingCountService.GetApartmentCOunt();
         }
     }
 }

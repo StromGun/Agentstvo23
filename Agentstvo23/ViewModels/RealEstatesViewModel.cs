@@ -17,6 +17,7 @@ namespace Agentstvo23.ViewModels
         private readonly RealEstateDB DataBase;
         private ObservableCollection<Building> buildings;
 
+        public MainWindowViewModel MainModel { get; internal set; }
         public string Title { get => _title; set => Set(ref _title, value); }
         public ObservableCollection<Building> BuildingsList { get => buildings; set => Set(ref buildings,value); }
 

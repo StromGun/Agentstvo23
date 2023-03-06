@@ -1,4 +1,5 @@
 ﻿using Agentstvo23.Data;
+using Agentstvo23.Services;
 using Agentstvo23.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,6 +21,7 @@ namespace Agentstvo23
 
         internal static void ConfigureServices(HostBuilderContext host, IServiceCollection services) => services
             .AddDatabase(host.Configuration.GetSection("Database"))
+            .AddServices()
             .AddViewModels();
             //services.AddSingleton<>();
 

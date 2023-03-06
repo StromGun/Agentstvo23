@@ -9,14 +9,14 @@ namespace Agentstvo23.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
         private string _title = "Agentstvo23";
-        private object currentView;
+        private ViewModel currentView;
 
         public string Title { get => _title; set => Set(ref _title, value); }
-        public object CurrentView { get => currentView; set => Set(ref currentView, value); }
+        public ViewModel CurrentView { get => currentView; set => Set(ref currentView, value); }
         private readonly RealEstateDB DataBase;
 
 
-        public INavigationViewModel NavigationVm { get; }
+        public NavigationViewModel NavigationVm { get; }
         public RealEstatesViewModel BuildingsVm { get; }
 
 
@@ -36,11 +36,17 @@ namespace Agentstvo23.ViewModels
         public MainWindowViewModel(
             RealEstateDB db,
             RealEstatesViewModel buildingsVm,
-            INavigationViewModel Navigation
+            NavigationViewModel Navigation
             )
         {
             DataBase = db;
             NavigationVm = Navigation;
+            Navigation.MainModel = this;
+
+            BuildingsVm = buildingsVm;
+            buildingsVm.MainModel = this;
+
+
         }
 
         public async Task LoadAsync()
