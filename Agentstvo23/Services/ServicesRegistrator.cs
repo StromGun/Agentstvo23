@@ -7,6 +7,7 @@ namespace Agentstvo23.Services
     {
         public static IServiceCollection AddServices(this IServiceCollection services) => services
             .AddTransient<IBuildingCount, BuildingCountService>()
+            .AddTransient<IGetBuildingData, GetBuildingDataService>()
             ;
     }
 }

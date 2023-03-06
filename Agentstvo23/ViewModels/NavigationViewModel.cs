@@ -1,13 +1,7 @@
 ﻿using Agentstvo23.DAL.Context;
 using Agentstvo23.Infrastructure.Commands;
-using Agentstvo23.Services;
 using Agentstvo23.Services.Interfaces;
 using Agentstvo23.ViewModels.Base;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -15,17 +9,20 @@ namespace Agentstvo23.ViewModels
 {
     internal class NavigationViewModel : ViewModel, INavigationViewModel
     {
+        #region Fields
         private string _title = "Навигация";
         private int countEstate;
         private int countNonResidentialBuilding;
         private int countResidentialBuilding;
-        private int countApartmentBuilding;
+        private int countApartmentBuilding; 
+        #endregion
 
         public string Title { get => _title; set => Set(ref _title, value); }
         public MainWindowViewModel MainModel { get; internal set; }
 
         private readonly RealEstateDB DataBase;
         private readonly IBuildingCount BuildingCountService;
+
 
         #region Counts
         public int CountEstate { get => countEstate; set => Set(ref countEstate, value); }

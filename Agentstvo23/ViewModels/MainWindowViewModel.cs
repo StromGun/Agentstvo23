@@ -13,7 +13,6 @@ namespace Agentstvo23.ViewModels
 
         public string Title { get => _title; set => Set(ref _title, value); }
         public ViewModel CurrentView { get => currentView; set => Set(ref currentView, value); }
-        private readonly RealEstateDB DataBase;
 
 
         public NavigationViewModel NavigationVm { get; }
@@ -21,6 +20,8 @@ namespace Agentstvo23.ViewModels
 
 
         #region Commands
+
+        #region LoadAsync -Command
         private LambdaCommand? _LoadAsync;
         public ICommand LoadAsyncCmd => _LoadAsync
             ??= new(LoadAsyncExecuted);
@@ -28,18 +29,27 @@ namespace Agentstvo23.ViewModels
         private void LoadAsyncExecuted()
         {
             LoadAsync();
+        }
+        #endregion
+        #region GoMain - command
+        private LambdaCommand? _GoMain;
+        public ICommand GoMainCmd => _GoMain
+            ??= new(GoMainExecuted);
+        private void GoMainExecuted()
+        {
+            CurrentView = NavigationVm;
         } 
+        #endregion
+
         #endregion
 
 
 
         public MainWindowViewModel(
-            RealEstateDB db,
             RealEstatesViewModel buildingsVm,
             NavigationViewModel Navigation
             )
         {
-            DataBase = db;
             NavigationVm = Navigation;
             Navigation.MainModel = this;
 
