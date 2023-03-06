@@ -9,7 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\add.png" />
     <None Remove="Resources\Images\location_city.png" />
+    <None Remove="Resources\Images\refresh.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,7 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\Images\add.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Images\location_city.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\refresh.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -16,15 +16,21 @@
     </i:Interaction.Triggers>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <Button/>
-            <Button/>
+            <Button>
+                <Button.Content>
+                    <Image Source="/Resources/Images/add.png" Height="25"/>
+                </Button.Content>
+            </Button>
+            <Button>
+                <Image Source="/Resources/Images/refresh.png" Height="25" />
+            </Button>
             <Button/>
             <TextBox/>
             <ComboBox/>
 
         </StackPanel>
 
-        <DataGrid ItemsSource="{Binding BuildingsList}" IsReadOnly="True" AutoGenerateColumns="False" >
+        <DataGrid ItemsSource="{Binding BuildingsList}" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Resources>
                 <ContextMenu  x:Key="CtxMenu">
                         <MenuItem Header="Редактировать"/>
@@ -41,11 +47,11 @@
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="CadastralNumber" Binding="{Binding CadastralNumber}"/>
                 <DataGridTextColumn Header="Adress" Binding="{Binding Adress}"/>
-                <DataGridTextColumn Header="Area" Binding="{Binding Area, StringFormat={}{0:N}}"/>
+                <DataGridTextColumn Header="Area" Binding="{Binding Area, StringFormat={}{0:N2}, ConverterCulture=ru-RU}"/>
                 <DataGridTextColumn Header="AssignationBuilding" Binding="{Binding AssignationBuilding}"/>
                 <DataGridTextColumn Header="CadastralBlock" Binding="{Binding CadastralBlock}"/>
-                <DataGridTextColumn Header="CadastralCostValue" Binding="{Binding CadastralCostValue, StringFormat={}{0:C2}}"/>
-                <DataGridTextColumn Header="CostPerMeter" Binding="{Binding CostPerMeter}"/>
+                <DataGridTextColumn Header="CadastralCostValue" Binding="{Binding CadastralCostValue, StringFormat={}{0:C2}, ConverterCulture=ru-RU}"/>
+                <DataGridTextColumn Header="CostPerMeter" Binding="{Binding CostPerMeter, StringFormat={}{0:C2}, ConverterCulture=ru-RU}"/>
                 <DataGridTextColumn Header="Floors" Binding="{Binding Floors}"/>
                 <DataGridTextColumn Header="UndergroundFloors" Binding="{Binding UndergroundFloors}"/>
             </DataGrid.Columns>
