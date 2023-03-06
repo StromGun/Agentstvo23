@@ -15,22 +15,81 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <Button>
-                <Button.Content>
-                    <Image Source="/Resources/Images/add.png" Height="25"/>
-                </Button.Content>
-            </Button>
-            <Button>
-                <Image Source="/Resources/Images/refresh.png" Height="25" />
-            </Button>
-            <Button/>
-            <TextBox/>
-            <ComboBox/>
+        
+        <StackPanel DockPanel.Dock="Top" >
+            <StackPanel Orientation="Horizontal">
+                <Button>
+                    <Button.Content>
+                        <Image Source="/Resources/Images/add.png" Height="25"/>
+                    </Button.Content>
+                </Button>
+                <Button>
+                    <Image Source="/Resources/Images/refresh.png" Height="25" />
+                </Button>
+                <Button/>
+                <TextBox/>
+                <ComboBox/>
+            </StackPanel>
+            
+            <Expander Header="Дополнительно">
+                <WrapPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <TextBlock Text="Адрес" Style="{StaticResource TblockCommon}"/>
+                        <TextBox Style="{StaticResource TboxCommon}"/>
+                    </StackPanel>
+                    
+                    <StackPanel>
+                        <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
+                        <TextBox Style="{StaticResource TboxCommon}"/>
+                    </StackPanel>
+                    
+                    <StackPanel>
+                        <TextBlock Text="Количество подземных этажей" Style="{StaticResource TblockCommon}"/>
+                        <TextBox Style="{StaticResource TboxCommon}"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
+                        <TextBox Style="{StaticResource TboxCommon}"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
+                        <TextBox Style="{StaticResource TboxCommon}"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="Площадь" Style="{StaticResource TblockCommon}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Style="{StaticResource TboxCommon}"/>
+                            <TextBox Style="{StaticResource TboxCommon}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    
+                    <StackPanel>
+                        <TextBlock Text="Цена за метр" Style="{StaticResource TblockCommon}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Style="{StaticResource TboxCommon}"/>
+                            <TextBox Style="{StaticResource TboxCommon}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <TextBlock Text="Кадастровая стоимость" Style="{StaticResource TblockCommon}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Style="{StaticResource TboxCommon}"/>
+                            <TextBox Style="{StaticResource TboxCommon}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                </WrapPanel>
+            </Expander>
 
         </StackPanel>
-
-        <DataGrid ItemsSource="{Binding BuildingsList}" IsReadOnly="True" AutoGenerateColumns="False">
+ 
+        <DataGrid ItemsSource="{Binding BuildingsList}"  Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single"
+                  IsReadOnly="True" AutoGenerateColumns="False">
+            
             <DataGrid.Resources>
                 <ContextMenu  x:Key="CtxMenu">
                         <MenuItem Header="Редактировать"/>

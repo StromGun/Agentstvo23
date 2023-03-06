@@ -3,13 +3,7 @@ using Agentstvo23.DAL.Entities;
 using Agentstvo23.Infrastructure.Commands;
 using Agentstvo23.Services.Interfaces;
 using Agentstvo23.ViewModels.Base;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Agentstvo23.ViewModels
@@ -18,10 +12,13 @@ namespace Agentstvo23.ViewModels
     {
         private string _title = "Недвижимости";
         private ObservableCollection<Building> buildings;
+        private Building selectedBuilding;
 
-        public MainWindowViewModel MainModel { get; internal set; }
         public string Title { get => _title; set => Set(ref _title, value); }
+        public MainWindowViewModel MainModel { get; internal set; }
+
         public ObservableCollection<Building> BuildingsList { get => buildings; set => Set(ref buildings,value); }
+        public Building SelectedBuilding { get => selectedBuilding; set => Set(ref selectedBuilding, value); }
 
         private readonly RealEstateDB DataBase;
         private readonly IGetBuildingData BuildingData;
