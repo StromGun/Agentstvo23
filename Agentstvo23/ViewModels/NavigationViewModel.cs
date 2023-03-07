@@ -54,10 +54,10 @@ namespace Agentstvo23.ViewModels
 
         public async Task LoadAsync()
         {
-            CountEstate = BuildingCountService.GetCount();
-            countNonResidentialBuilding = BuildingCountService.GetNonResidentalCount();
-            countResidentialBuilding = BuildingCountService.GetResidentalCount();
-            countApartmentBuilding = BuildingCountService.GetApartmentCOunt();
+            CountEstate = await BuildingCountService.GetCountAsync().ConfigureAwait(false);
+            countNonResidentialBuilding = await BuildingCountService.GetNonResidentalCountAsync().ConfigureAwait(false);
+            countResidentialBuilding = await BuildingCountService.GetResidentalCountAsync();
+            countApartmentBuilding = await BuildingCountService.GetApartmentCountAsync().ConfigureAwait(false);
         }
     }
 }

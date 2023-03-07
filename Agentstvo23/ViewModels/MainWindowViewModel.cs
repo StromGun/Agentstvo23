@@ -26,9 +26,9 @@ namespace Agentstvo23.ViewModels
         public ICommand LoadAsyncCmd => _LoadAsync
             ??= new(LoadAsyncExecuted);
 
-        private void LoadAsyncExecuted()
+        private async void LoadAsyncExecuted()
         {
-            LoadAsync();
+            await LoadAsync();
         }
         #endregion
         #region GoMain - command

@@ -1,6 +1,8 @@
 ﻿using Agentstvo23.DAL.Context;
 using Agentstvo23.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Agentstvo23.Services
 {
@@ -16,24 +18,24 @@ namespace Agentstvo23.Services
         }
 
 
-        public int GetCount()
+        public async Task<int> GetCountAsync()
         {
-            return BuildingCount = db.Buildings.Count();
+            return BuildingCount = await db.Buildings.CountAsync().ConfigureAwait(false);
         }
 
-        public int GetResidentalCount()
+        public async Task<int> GetResidentalCountAsync()
         {
-            return BuildingCount = db.Buildings.Where(p => p.AssignationBuilding == "Жилой дом").Count();
+            return BuildingCount = await db.Buildings.Where(p => p.AssignationBuilding == "Жилой дом").CountAsync().ConfigureAwait(false);
         }
 
-        public int GetNonResidentalCount()
+        public async Task<int> GetNonResidentalCountAsync()
         {
-            return BuildingCount = db.Buildings.Where(p => p.AssignationBuilding == "Нежилое здание").Count();
-        }
+            return BuildingCount = await db.Buildings.Where(p => p.AssignationBuilding == "Нежилое здание").CountAsync().ConfigureAwait(false);
+        }      
 
-        public int GetApartmentCOunt()
+        public async Task<int> GetApartmentCountAsync()
         {
-            return BuildingCount = db.Buildings.Where(p => p.AssignationBuilding == "Многоквартирный дом").Count();
+            return BuildingCount = await db.Buildings.Where(p => p.AssignationBuilding == "Многоквартирный дом").CountAsync().ConfigureAwait(false);
         }
     }
 }

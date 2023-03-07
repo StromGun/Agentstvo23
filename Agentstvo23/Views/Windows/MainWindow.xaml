@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Agentstvo23"
         mc:Ignorable="d"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
-        Title="{Binding Title}" MinHeight="450" MinWidth="800">
+        Title="Agentstvo23" MinHeight="450" MinWidth="800">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadAsyncCmd}"/>
@@ -17,11 +17,11 @@
     <DockPanel Background="{StaticResource ColorSecondary}">
         <Grid DockPanel.Dock="Top" Background="{StaticResource ColorCommonAlt}" HorizontalAlignment="Stretch" MaxHeight="50">
             <Image Source="/Resources/Images/location_city.png" MaxHeight="50" HorizontalAlignment="Left"/>
-            <TextBlock Text="HIHI" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding ElementName=CControl, Path=Content.Title}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button Content="На главную" Command="{Binding GoMainCmd}" Background="{StaticResource ColorAccentAlt}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
         </Grid>
 
-        <ContentControl Content="{Binding CurrentView}"/>
+        <ContentControl Name="CControl" Content="{Binding CurrentView}"/>
 
     </DockPanel>
 </Window>

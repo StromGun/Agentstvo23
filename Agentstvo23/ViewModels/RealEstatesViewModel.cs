@@ -3,7 +3,10 @@ using Agentstvo23.DAL.Entities;
 using Agentstvo23.Infrastructure.Commands;
 using Agentstvo23.Services.Interfaces;
 using Agentstvo23.ViewModels.Base;
+using System.Collections;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Agentstvo23.ViewModels
@@ -11,17 +14,68 @@ namespace Agentstvo23.ViewModels
     internal class RealEstatesViewModel : ViewModel
     {
         private string _title = "Недвижимости";
-        private ObservableCollection<Building> buildings;
         private Building selectedBuilding;
+        private readonly RealEstateDB DataBase;
+        private readonly IGetBuildingData BuildingData;
+
 
         public string Title { get => _title; set => Set(ref _title, value); }
         public MainWindowViewModel MainModel { get; internal set; }
 
-        public ObservableCollection<Building> BuildingsList { get => buildings; set => Set(ref buildings,value); }
+        #region Buildings : ObservableCollection<Building> - коллекция зданий
+
+        private ObservableCollection<Building> buildings;
+
+        /// <summary> Коллекция книг </summary>
+        public ObservableCollection<Building> BuildingsList
+        {
+            get => buildings;
+            set
+            {
+                if (Set(ref buildings, value))
+                {
+                    buildingsViewSource = new CollectionViewSource
+                    {
+                        Source = value,
+                        SortDescriptions =
+                        {
+                            new SortDescription(nameof(Building.Id), ListSortDirection.Ascending )
+                        }
+                    };
+
+                    buildingsViewSource.Filter += OnBuildingFilter;
+                    buildingsViewSource.View.Refresh();
+
+                    OnPropertyChanged(nameof(BuildingsView));
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region BuildingFilter : string - Искомый кадастровый номер
+        private string buildingFilter;
+        public string BuildingFilter
+        {
+            get => buildingFilter;
+            set
+            {
+                if (Set(ref buildingFilter, value))
+                    buildingsViewSource.View.Refresh();
+            }
+        }
+
+        #endregion
+
+        private CollectionViewSource buildingsViewSource;
+
+        public ICollectionView BuildingsView => buildingsViewSource?.View;
+
+
+
         public Building SelectedBuilding { get => selectedBuilding; set => Set(ref selectedBuilding, value); }
 
-        private readonly RealEstateDB DataBase;
-        private readonly IGetBuildingData BuildingData;
 
         #region Commands
         private LambdaCommand? _LoadedAsync;
@@ -46,6 +100,14 @@ namespace Agentstvo23.ViewModels
             BuildingsList = BuildingData.GetBuilding();
         }
 
+
+        private void OnBuildingFilter(object sender, FilterEventArgs e)
+        {
+            if (e.Item is not Building building || string.IsNullOrEmpty(buildingFilter)) return;
+
+            if (!building.CadastralNumber.Contains(BuildingFilter))
+                e.Accepted = false;
+        }
 
     }
 }

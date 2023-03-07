@@ -28,9 +28,10 @@
                 </Button>
 
                 <Button Style="{StaticResource BtnImage}"/>
-                
-                <TextBox/>
-                <ComboBox/>
+
+                <TextBox Style="{StaticResource TboxCommon}"  Text="{Binding BuildingFilter, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <ComboBox BorderThickness="0 0 0 2" Width="100" Background="{StaticResource ColorSecondary}"/>
             </StackPanel>
             
             <Expander Header="Дополнительно">
@@ -89,7 +90,7 @@
 
         </StackPanel>
  
-        <DataGrid ItemsSource="{Binding BuildingsList}"  Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single"
+        <DataGrid ItemsSource="{Binding BuildingsView}"  Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single"
                   IsReadOnly="True" AutoGenerateColumns="False" Margin="5 0">
             
             <DataGrid.Resources>
