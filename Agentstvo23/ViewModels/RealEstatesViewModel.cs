@@ -78,13 +78,24 @@ namespace Agentstvo23.ViewModels
 
 
         #region Commands
+
+        #region LoadAsync - загрузка окна
         private LambdaCommand? _LoadedAsync;
         public ICommand LoadedAsyncCmd => _LoadedAsync
             ??= new(LoadedAsyncExecuted);
         private void LoadedAsyncExecuted()
         {
             LoadAsync();
-        } 
+        }
+        #endregion
+
+        private LambdaCommand? _RefreshAsync;
+        public ICommand RefreshAsyncCmd => _RefreshAsync
+            ??= new(RefreshAsyncExecuted);
+        private void RefreshAsyncExecuted()
+        {
+
+        }
         #endregion
 
 
