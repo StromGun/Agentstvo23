@@ -18,18 +18,19 @@
         
         <StackPanel DockPanel.Dock="Top" Margin="5">
             <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource BtnImage}">
+                <Button Style="{StaticResource BtnImage}" Command="{Binding AddNewBuildingCmd}">
                     <Button.Content>
                         <Image Source="/Resources/Images/add.png" Height="25"/>
                     </Button.Content>
                 </Button>
+                
                 <Button Style="{StaticResource BtnImage}">
                     <Image Source="/Resources/Images/refresh.png" Height="25" />
                 </Button>
 
                 <Button Style="{StaticResource BtnImage}"/>
 
-                <TextBox Style="{StaticResource TboxCommon}"  Text="{Binding BuildingFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Style="{StaticResource TboxCommon}" Margin="5 0" MinWidth="50" Text="{Binding BuildingFilter, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <ComboBox BorderThickness="0 0 0 2" Width="100" Background="{StaticResource ColorSecondary}"/>
             </StackPanel>
@@ -91,12 +92,12 @@
         </StackPanel>
  
         <DataGrid ItemsSource="{Binding BuildingsView}"  Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single"
-                  IsReadOnly="True" AutoGenerateColumns="False" Margin="5 0">
+                  IsReadOnly="True" AutoGenerateColumns="False" Margin="5 0" >
             
             <DataGrid.Resources>
                 <ContextMenu  x:Key="CtxMenu">
                         <MenuItem Header="Редактировать"/>
-                        <MenuItem Header="Удалить"/>
+                        <MenuItem Header="Удалить" Command="{Binding Path=DataContext.RemoveBuilding, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding SelectedBuilding}"/>
                 </ContextMenu>
             </DataGrid.Resources>
             <DataGrid.RowStyle>

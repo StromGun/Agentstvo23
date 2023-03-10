@@ -33,10 +33,10 @@
             </Border>
 
             <StackPanel Grid.Column="1">
-                <TextBlock>Количество недвижимости: <Run Text="{Binding CountEstate}" FontWeight="Bold"/></TextBlock>
-                <TextBlock>Количество нежилых зданий: <Run Text="{Binding CountNonResidentialBuilding}" FontWeight="Bold"/></TextBlock>
-                <TextBlock>Количество жилых домов: <Run Text="{Binding CountResidentialBuilding}" FontWeight="Bold"/></TextBlock>
-                <TextBlock>Количество многоквартиных домов: <Run Text="{Binding CountApartmentBuilding}" FontWeight="Bold"/></TextBlock>
+                <TextBlock Style="{StaticResource TblockCommon}">Количество недвижимости: <Run Text="{Binding CountEstate}" FontWeight="Bold" /></TextBlock>
+                <TextBlock Style="{StaticResource TblockCommon}">Количество нежилых зданий: <Run Text="{Binding CountNonResidentialBuilding}" FontWeight="Bold"/></TextBlock>
+                <TextBlock Style="{StaticResource TblockCommon}">Количество жилых домов: <Run Text="{Binding CountResidentialBuilding}" FontWeight="Bold"/></TextBlock>
+                <TextBlock Style="{StaticResource TblockCommon}">Количество многоквартиных домов: <Run Text="{Binding CountApartmentBuilding}" FontWeight="Bold"/></TextBlock>
             </StackPanel>
             
         </Grid>

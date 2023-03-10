@@ -31,6 +31,7 @@ namespace Agentstvo23.ViewModels
             await LoadAsync();
         }
         #endregion
+
         #region GoMain - command
         private LambdaCommand? _GoMain;
         public ICommand GoMainCmd => _GoMain

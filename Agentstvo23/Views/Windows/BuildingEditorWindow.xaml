@@ -1,0 +1,153 @@
+﻿<Window x:Class="Agentstvo23.Views.Windows.BuildingEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Agentstvo23.ViewModels"
+        xmlns:local="clr-namespace:Agentstvo23.Views.Windows"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance {x:Type vm:BuildingEditorViewModel}}"
+        Title="BuildingEditorWindow" Height="450" Width="800">
+    <Grid >
+      
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Кадастровый номер:"  Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="Address">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Адрес:"  Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="CadastralNumber">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Площадь:" Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="Area">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Кадастровая стоимость:" Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="CadastralCost">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Цена за метр:" Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="CadastralCostPerMeter">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Назначение:"  Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="AssignationBuilding">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Кадастровый блок:"  Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="CadastralBlock">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Дата постройки:"  Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="YearBuilt">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Количество этажей:" Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="Floors">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+
+            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+                <TextBlock Text="Количество подземных этажей:" Style="{StaticResource TblockCommon2}"/>
+                <TextBox Style="{StaticResource TboxCommon2}">
+                    <TextBox.Text>
+                        <Binding Path="UndergroundFloors">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </WrapPanel>
+        </StackPanel>
+
+        <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Button Content="Добавить" IsDefault="True" Command="{StaticResource DialogResultCommand}" CommandParameter="True"/>
+            <Button Content="Отмена" IsCancel="True"  Command="{StaticResource DialogResultCommand}" CommandParameter="False"/>
+            
+        </WrapPanel>
+    </Grid>
+</Window>

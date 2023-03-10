@@ -4,6 +4,7 @@ using Agentstvo23.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Linq;
 using System.Windows;
 
 namespace Agentstvo23
@@ -13,6 +14,18 @@ namespace Agentstvo23
     /// </summary>
     public partial class App : Application
     {
+        #region Window
+        public static Window ActiveWindow => Current.Windows
+             .OfType<Window>()
+             .FirstOrDefault(w => w.IsActive);
+
+        public static Window FocusedWindow => Current.Windows
+           .OfType<Window>()
+           .FirstOrDefault(w => w.IsFocused);
+
+        public static Window CurrentWindow => FocusedWindow ?? ActiveWindow; 
+        #endregion
+
         private static IHost __Host;
 
         public static IHost Host => __Host ??= Program.CreateHostBuilder(Environment.GetCommandLineArgs()).Build();
