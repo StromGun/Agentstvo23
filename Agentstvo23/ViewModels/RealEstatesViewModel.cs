@@ -45,6 +45,9 @@ namespace Agentstvo23.ViewModels
                     };
 
                     buildingsViewSource.Filter += OnBuildingFilter;
+                    buildingsViewSource.Filter += OnAddressFilter;
+                    buildingsViewSource.Filter += OnFloorFilter;
+
                     buildingsViewSource.View.Refresh();
 
                     OnPropertyChanged(nameof(BuildingsView));
@@ -74,15 +77,30 @@ namespace Agentstvo23.ViewModels
         public string AdressFilter
         {
             get => adressFilter;
-            set => Set(ref adressFilter, value);
+            set
+            {
+                if (Set(ref adressFilter, value))
+                    buildingsViewSource.View.Refresh();
+            }
+        }
+        #endregion
+
+        #region FloorFilter : string - Искомое кол-во этажей
+        private int? floorFilter;
+        public int? FloorFilter
+        {
+            get => floorFilter;
+            set
+            {
+                if (Set(ref floorFilter, value))
+                    buildingsViewSource.View.Refresh();
+            }
         } 
         #endregion
 
         private CollectionViewSource buildingsViewSource;
 
         public ICollectionView BuildingsView => buildingsViewSource?.View;
-
-
 
         public Building SelectedBuilding { get => selectedBuilding; set => Set(ref selectedBuilding, value); }
 
@@ -141,8 +159,16 @@ namespace Agentstvo23.ViewModels
             DataBase.SaveChanges();
 
             SelectedBuilding = null;
-        } 
+        }
         #endregion
+
+        private ICommand _applyFilter;
+        public ICommand ApllyFilterCmd => _applyFilter
+            ??= new LambdaCommand(OnApplyFilterExecuted);
+        private void OnApplyFilterExecuted()
+        {
+            
+        }
 
         #endregion
 
@@ -166,6 +192,22 @@ namespace Agentstvo23.ViewModels
             if (e.Item is not Building building || string.IsNullOrEmpty(buildingFilter)) return;
 
             if (!building.CadastralNumber.Contains(BuildingFilter))
+                e.Accepted = false;
+        }
+
+        private void OnAddressFilter(object sender, FilterEventArgs e)
+        {
+            if (e.Item is not Building building || string.IsNullOrEmpty(adressFilter)) return;
+
+            if (!building.Adress.Contains(adressFilter))
+                e.Accepted = false;
+        }
+
+        private void OnFloorFilter(object sender, FilterEventArgs e)
+        {
+            if (e.Item is not Building building || floorFilter is null) return;
+
+            if (!building.Floors.Equals(FloorFilter))
                 e.Accepted = false;
         }
 

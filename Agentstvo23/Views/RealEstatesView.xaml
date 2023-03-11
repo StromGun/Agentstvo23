@@ -36,15 +36,21 @@
             </StackPanel>
             
             <Expander Header="Дополнительно">
-                <WrapPanel Orientation="Horizontal" ItemWidth="150">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0.1*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <WrapPanel Orientation="Horizontal" ItemWidth="150">
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Адрес" Style="{StaticResource TblockCommon}"/>
-                        <TextBox Style="{StaticResource TboxCommon}"/>
+                        <TextBox Style="{StaticResource TboxCommon}" Text="{Binding AdressFilter}"/>
                     </StackPanel>
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
-                        <TextBox Style="{StaticResource TboxCommon}"/>
+                        <TextBox Style="{StaticResource TboxCommon}" Text="{Binding FloorFilter}"/>
                     </StackPanel>
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
@@ -87,11 +93,13 @@
                     </StackPanel>
 
                 </WrapPanel>
+                    <Button Grid.Column="1" VerticalAlignment="Bottom" Content="Применить"/>
+                </Grid>
             </Expander>
 
         </StackPanel>
  
-        <DataGrid ItemsSource="{Binding BuildingsView}"  Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single"
+        <DataGrid ItemsSource="{Binding BuildingsView}"  Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single" AllowDrop="True"
                   IsReadOnly="True" AutoGenerateColumns="False" Margin="5 0" >
             
             <DataGrid.Resources>

@@ -7,7 +7,10 @@
         xmlns:local="clr-namespace:Agentstvo23.Views.Windows"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance {x:Type vm:BuildingEditorViewModel}}"
-        Title="BuildingEditorWindow" Height="450" Width="800">
+        Title="{Binding Title}" 
+        MinHeight="400" MinWidth="500"
+        Height="400" Width="500" 
+        WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize">
     <Grid >
       
 
