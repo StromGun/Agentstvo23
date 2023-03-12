@@ -45,27 +45,22 @@
                     <WrapPanel Orientation="Horizontal" ItemWidth="150">
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Адрес" Style="{StaticResource TblockCommon}"/>
-                        <TextBox Style="{StaticResource TboxCommon}" Text="{Binding AdressFilter}"/>
+                        <TextBox Style="{StaticResource TboxCommon}" Text="{Binding AdressFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
-                        <TextBox Style="{StaticResource TboxCommon}" Text="{Binding FloorFilter}"/>
+                            <TextBox Style="{StaticResource TboxCommon}" Text="{Binding FloorFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
-                        <TextBlock Text="Количество подземных этажей" Style="{StaticResource TblockCommon}"/>
-                        <TextBox Style="{StaticResource TboxCommon}"/>
+                        <TextBlock Text="Количество подземных этажей" TextWrapping="Wrap" Style="{StaticResource TblockCommon}"/>
+                            <TextBox Style="{StaticResource TboxCommon}" Text="{Binding UndergroundFloorFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
-                        <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
-                        <TextBox Style="{StaticResource TboxCommon}"/>
-                    </StackPanel>
-
-                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
-                        <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
-                        <TextBox Style="{StaticResource TboxCommon}"/>
+                        <TextBlock Text="Кадастровый блок" Style="{StaticResource TblockCommon}"/>
+                        <TextBox Style="{StaticResource TboxCommon}" Text="{Binding CadastralBlockFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
@@ -76,7 +71,7 @@
                         </WrapPanel>
                     </StackPanel>
 
-                    <StackPanel Style="{StaticResource StackPanel-Margin5}">
+                        <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Цена за метр" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
                         <WrapPanel ItemWidth="70">
                             <TextBox Style="{StaticResource TboxCommon}"/>

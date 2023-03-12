@@ -47,6 +47,8 @@ namespace Agentstvo23.ViewModels
                     buildingsViewSource.Filter += OnBuildingFilter;
                     buildingsViewSource.Filter += OnAddressFilter;
                     buildingsViewSource.Filter += OnFloorFilter;
+                    buildingsViewSource.Filter += OnUndergroundFloorFilter;
+                    buildingsViewSource.Filter += OnCadastralBlockFilter;
 
                     buildingsViewSource.View.Refresh();
 
@@ -86,8 +88,8 @@ namespace Agentstvo23.ViewModels
         #endregion
 
         #region FloorFilter : string - Искомое кол-во этажей
-        private int? floorFilter;
-        public int? FloorFilter
+        private string floorFilter;
+        public string FloorFilter
         {
             get => floorFilter;
             set
@@ -95,8 +97,36 @@ namespace Agentstvo23.ViewModels
                 if (Set(ref floorFilter, value))
                     buildingsViewSource.View.Refresh();
             }
+        }
+        #endregion
+
+        #region UndergroundFloorFilter - Искомое кол-во подземных этажей
+        private string undergroundFloorFilter;
+        public string UndergroundFloorFilter
+        {
+            get => undergroundFloorFilter;
+            set
+            {
+                if (Set(ref undergroundFloorFilter, value))
+                    buildingsViewSource.View.Refresh();
+            }
+        }
+        #endregion
+
+        #region CadastralBlockFilter - Искомый кадастровый блок
+        private string cadastralBlockFilter;
+        public string CadastralBlockFilter
+        {
+            get => cadastralBlockFilter;
+            set
+            {
+                if (Set(ref cadastralBlockFilter, value))
+                    buildingsViewSource.View.Refresh();
+            }
         } 
         #endregion
+
+
 
         private CollectionViewSource buildingsViewSource;
 
@@ -162,14 +192,6 @@ namespace Agentstvo23.ViewModels
         }
         #endregion
 
-        private ICommand _applyFilter;
-        public ICommand ApllyFilterCmd => _applyFilter
-            ??= new LambdaCommand(OnApplyFilterExecuted);
-        private void OnApplyFilterExecuted()
-        {
-            
-        }
-
         #endregion
 
 
@@ -187,11 +209,12 @@ namespace Agentstvo23.ViewModels
         }
 
 
+
         private void OnBuildingFilter(object sender, FilterEventArgs e)
         {
             if (e.Item is not Building building || string.IsNullOrEmpty(buildingFilter)) return;
 
-            if (!building.CadastralNumber.Contains(BuildingFilter))
+            if (!building.CadastralNumber.Contains(buildingFilter))
                 e.Accepted = false;
         }
 
@@ -199,17 +222,32 @@ namespace Agentstvo23.ViewModels
         {
             if (e.Item is not Building building || string.IsNullOrEmpty(adressFilter)) return;
 
-            if (!building.Adress.Contains(adressFilter))
+            if (!building.Adress.ToLower().Contains(adressFilter.ToLower()))
                 e.Accepted = false;
         }
 
         private void OnFloorFilter(object sender, FilterEventArgs e)
         {
-            if (e.Item is not Building building || floorFilter is null) return;
+            if (e.Item is not Building building || string.IsNullOrEmpty(floorFilter)) return;
 
-            if (!building.Floors.Equals(FloorFilter))
+            if (!building.Floors.Equals(int.Parse(floorFilter)))
                 e.Accepted = false;
         }
 
+        private void OnUndergroundFloorFilter(object sender, FilterEventArgs e)
+        {
+            if (e.Item is not Building building || string.IsNullOrEmpty(undergroundFloorFilter)) return;
+
+            if (!building.UndergroundFloors.Equals(int.Parse(undergroundFloorFilter)))
+                e.Accepted = false;
+        }
+
+        private void OnCadastralBlockFilter(object sender, FilterEventArgs e)
+        {
+            if (e.Item is not Building building || string.IsNullOrEmpty(cadastralBlockFilter)) return;
+
+            if (!building.CadastralBlock.Contains(cadastralBlockFilter))
+                e.Accepted = false;
+        }
     }
 }
