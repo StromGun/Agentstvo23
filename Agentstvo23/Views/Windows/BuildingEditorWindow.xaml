@@ -10,13 +10,14 @@
         Title="{Binding Title}" 
         MinHeight="400" MinWidth="500"
         Height="400" Width="500" 
-        WindowStartupLocation="CenterOwner" ResizeMode="CanMinimize">
+        WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Background="{StaticResource ColorSecondary}"
+        Style="{StaticResource defaultWindow}">
     <Grid >
       
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
                 <TextBlock Text="Кадастровый номер:"  Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
@@ -29,7 +30,7 @@
                 </TextBox>
             </WrapPanel>
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
                 <TextBlock Text="Адрес:"  Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
@@ -42,11 +43,11 @@
                 </TextBox>
             </WrapPanel>
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
                 <TextBlock Text="Площадь:" Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
-                        <Binding Path="Area">
+                        <Binding Path="Area" StringFormat="{}{0:N2} м²" ConverterCulture="ru-RU">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule/>
                             </Binding.ValidationRules>
@@ -55,11 +56,11 @@
                 </TextBox>
             </WrapPanel>
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
                 <TextBlock Text="Кадастровая стоимость:" Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
-                        <Binding Path="CadastralCost">
+                        <Binding Path="CadastralCost" StringFormat="{}{0:C2}" ConverterCulture="ru-RU">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule/>
                             </Binding.ValidationRules>
@@ -68,11 +69,11 @@
                 </TextBox>
             </WrapPanel>
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
                 <TextBlock Text="Цена за метр:" Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
-                        <Binding Path="CadastralCostPerMeter">
+                        <Binding Path="CadastralCostPerMeter" StringFormat="{}{0:C2}" ConverterCulture="ru-RU">
                             <Binding.ValidationRules>
                                 <DataErrorValidationRule/>
                             </Binding.ValidationRules>
@@ -81,7 +82,7 @@
                 </TextBox>
             </WrapPanel>
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
                 <TextBlock Text="Назначение:"  Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
@@ -94,7 +95,7 @@
                 </TextBox>
             </WrapPanel>
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
                 <TextBlock Text="Кадастровый блок:"  Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
@@ -107,8 +108,8 @@
                 </TextBox>
             </WrapPanel>
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
-                <TextBlock Text="Дата постройки:"  Style="{StaticResource TblockCommon2}"/>
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
+                <TextBlock Text="Год постройки:"  Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
                         <Binding Path="YearBuilt">
@@ -120,7 +121,7 @@
                 </TextBox>
             </WrapPanel>
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
                 <TextBlock Text="Количество этажей:" Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
@@ -133,7 +134,7 @@
                 </TextBox>
             </WrapPanel>
 
-            <WrapPanel Orientation="Horizontal" ItemWidth="185">
+            <WrapPanel Orientation="Horizontal" ItemWidth="200">
                 <TextBlock Text="Количество подземных этажей:" Style="{StaticResource TblockCommon2}"/>
                 <TextBox Style="{StaticResource TboxCommon2}">
                     <TextBox.Text>
@@ -148,8 +149,8 @@
         </StackPanel>
 
         <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <Button Content="Добавить" IsDefault="True" Command="{StaticResource DialogResultCommand}" CommandParameter="True"/>
-            <Button Content="Отмена" IsCancel="True"  Command="{StaticResource DialogResultCommand}" CommandParameter="False"/>
+            <Button Content="Добавить" IsDefault="True" Style="{StaticResource BtnCommon}" Command="{StaticResource DialogResultCommand}" CommandParameter="True"/>
+            <Button Content="Отмена" IsCancel="True" Style="{StaticResource BtnCommon}" Command="{StaticResource DialogResultCommand}" CommandParameter="False"/>
             
         </WrapPanel>
     </Grid>

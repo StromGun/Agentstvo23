@@ -32,7 +32,9 @@
 
                 <TextBox Style="{StaticResource TboxCommon}" Margin="5 0" MinWidth="50" Text="{Binding BuildingFilter, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <ComboBox BorderThickness="0 0 0 2" Width="100" Background="{StaticResource ColorSecondary}"/>
+                <ComboBox BorderThickness="0 0 0 2" VerticalContentAlignment="Center" MinWidth="100" 
+                          IsReadOnly="False" IsEditable="True" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding AssignationFilter}"
+                          Background="{StaticResource ColorSecondary}" ItemsSource="{Binding DistinctAssignations}"/>
             </StackPanel>
             
             <Expander Header="Дополнительно">
@@ -42,7 +44,7 @@
                         <ColumnDefinition Width="0.1*"/>
                     </Grid.ColumnDefinitions>
                     
-                    <WrapPanel Orientation="Horizontal" ItemWidth="150">
+                    <WrapPanel Orientation="Horizontal" ItemWidth="170">
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Адрес" Style="{StaticResource TblockCommon}"/>
                         <TextBox Style="{StaticResource TboxCommon}" Text="{Binding AdressFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
@@ -54,7 +56,7 @@
                     </StackPanel>
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
-                        <TextBlock Text="Количество подземных этажей" TextWrapping="Wrap" Style="{StaticResource TblockCommon}"/>
+                        <TextBlock Text="Кол-во подземных этажей" TextWrapping="Wrap" Style="{StaticResource TblockCommon}"/>
                             <TextBox Style="{StaticResource TboxCommon}" Text="{Binding UndergroundFloorFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
@@ -73,7 +75,7 @@
 
                         <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Цена за метр" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
-                        <WrapPanel ItemWidth="70">
+                            <WrapPanel ItemWidth="80">
                             <TextBox Style="{StaticResource TboxCommon}"/>
                             <TextBox Style="{StaticResource TboxCommon}"/>
                         </WrapPanel>
@@ -81,7 +83,7 @@
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Кадастровая стоимость" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
-                        <WrapPanel ItemWidth="70">
+                        <WrapPanel ItemWidth="80">
                             <TextBox Style="{StaticResource TboxCommon}" />
                             <TextBox Style="{StaticResource TboxCommon}" />
                         </WrapPanel>
@@ -94,13 +96,17 @@
 
         </StackPanel>
  
-        <DataGrid ItemsSource="{Binding BuildingsView}"  Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single" AllowDrop="True"
-                  IsReadOnly="True" AutoGenerateColumns="False" Margin="5 0" >
+        <DataGrid ItemsSource="{Binding BuildingsView}"  Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single" 
+                  IsReadOnly="True" AutoGenerateColumns="False" Margin="5 2" >
             
             <DataGrid.Resources>
                 <ContextMenu  x:Key="CtxMenu">
-                        <MenuItem Header="Редактировать"/>
-                        <MenuItem Header="Удалить" Command="{Binding Path=DataContext.RemoveBuilding, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding SelectedBuilding}"/>
+                    <MenuItem Header="Редактировать" 
+                              Command="{Binding Path=DataContext.EditBuildingCmd, 
+                        RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                        <MenuItem Header="Удалить" 
+                                  Command="{Binding Path=DataContext.RemoveBuilding, 
+                            RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
                 </ContextMenu>
             </DataGrid.Resources>
             <DataGrid.RowStyle>
@@ -111,15 +117,16 @@
             
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="CadastralNumber" Binding="{Binding CadastralNumber}"/>
-                <DataGridTextColumn Header="Adress" Binding="{Binding Adress}"/>
-                <DataGridTextColumn Header="Area" Binding="{Binding Area, StringFormat={}{0:N2}, ConverterCulture=ru-RU}"/>
-                <DataGridTextColumn Header="AssignationBuilding" Binding="{Binding AssignationBuilding}"/>
-                <DataGridTextColumn Header="CadastralBlock" Binding="{Binding CadastralBlock}"/>
-                <DataGridTextColumn Header="CadastralCostValue" Binding="{Binding CadastralCostValue, StringFormat={}{0:C2}, ConverterCulture=ru-RU}"/>
-                <DataGridTextColumn Header="CostPerMeter" Binding="{Binding CostPerMeter, StringFormat={}{0:C2}, ConverterCulture=ru-RU}"/>
-                <DataGridTextColumn Header="Floors" Binding="{Binding Floors}"/>
-                <DataGridTextColumn Header="UndergroundFloors" Binding="{Binding UndergroundFloors}"/>
+                <DataGridTextColumn Header="Кадастровый номер" Binding="{Binding CadastralNumber}"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Adress}"/>
+                <DataGridTextColumn Header="Площадь" Binding="{Binding Area, StringFormat={}{0:N2} м², ConverterCulture=ru-RU}"/>
+                <DataGridTextColumn Header="Назначение здания" Binding="{Binding AssignationBuilding}"/>
+                <DataGridTextColumn Header="Кадастровый блок" Binding="{Binding CadastralBlock}"/>
+                <DataGridTextColumn Header="Кадастровая стоимость" Binding="{Binding CadastralCostValue, StringFormat={}{0:C2}, ConverterCulture=ru-RU}"/>
+                <DataGridTextColumn Header="Стоимость за метр" Binding="{Binding CostPerMeter, StringFormat={}{0:C2}, ConverterCulture=ru-RU}"/>
+                <DataGridTextColumn Header="Год постройки" Binding="{Binding YearBuilt}"/>
+                <DataGridTextColumn Header="Количество этажей" Binding="{Binding Floors}"/>
+                <DataGridTextColumn Header="Количество подземных этажей" Binding="{Binding UndergroundFloors}"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

@@ -10,7 +10,7 @@ namespace Agentstvo23.Services
     {
         public bool Edit(Building building)
         {
-            var building_editor_model = new BuildingEditorViewModel();
+            var building_editor_model = new BuildingEditorViewModel(building);
             var building_editor_window = new BuildingEditorWindow()
             {
                 DataContext = building_editor_model

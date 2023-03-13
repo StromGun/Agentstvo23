@@ -4,8 +4,10 @@ using Agentstvo23.Infrastructure.Commands;
 using Agentstvo23.Services.Interfaces;
 using Agentstvo23.ViewModels.Base;
 using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -49,6 +51,7 @@ namespace Agentstvo23.ViewModels
                     buildingsViewSource.Filter += OnFloorFilter;
                     buildingsViewSource.Filter += OnUndergroundFloorFilter;
                     buildingsViewSource.Filter += OnCadastralBlockFilter;
+                    buildingsViewSource.Filter += OnAssignationFilter;
 
                     buildingsViewSource.View.Refresh();
 
@@ -123,9 +126,21 @@ namespace Agentstvo23.ViewModels
                 if (Set(ref cadastralBlockFilter, value))
                     buildingsViewSource.View.Refresh();
             }
-        } 
+        }
         #endregion
 
+        #region AssignationFilter - Выбранный тип здания
+        private string assignationFilter;
+        public string AssignationFilter
+        {
+            get => assignationFilter;
+            set
+            {
+                if (Set(ref assignationFilter, value))
+                    buildingsViewSource.View.Refresh();
+            }
+        } 
+        #endregion
 
 
         private CollectionViewSource buildingsViewSource;
@@ -133,6 +148,11 @@ namespace Agentstvo23.ViewModels
         public ICollectionView BuildingsView => buildingsViewSource?.View;
 
         public Building SelectedBuilding { get => selectedBuilding; set => Set(ref selectedBuilding, value); }
+
+        #region DistinctAssignations : string - Уникальные значения типа здания
+        private List<string> distinctAssignations;
+        public List<string> DistinctAssignations { get => distinctAssignations; set => Set(ref distinctAssignations, value); } 
+        #endregion
 
 
         #region Commands
@@ -170,7 +190,23 @@ namespace Agentstvo23.ViewModels
             
             DataBase.Buildings.Add(new_building);
             DataBase.SaveChanges();
+            buildingsViewSource.View.Refresh();
         }
+        #endregion
+
+        #region EditBuilding - Редактирование записи о здании
+        private ICommand editBuilding;
+        public ICommand EditBuildingCmd => editBuilding
+            ??= new LambdaCommand(OnEditBuildingExecuted);
+        private void OnEditBuildingExecuted()
+        {
+            if (!_UserDialog.Edit(selectedBuilding))
+                return;
+
+            DataBase.Buildings.Update(selectedBuilding);
+            DataBase.SaveChanges();
+            buildingsViewSource.View.Refresh();
+        } 
         #endregion
 
         #region RemoveBuilding : Building - удаление записи
@@ -187,7 +223,7 @@ namespace Agentstvo23.ViewModels
 
             DataBase.Buildings.Remove(building_for_remove);
             DataBase.SaveChanges();
-
+            buildingsViewSource.View.Refresh();
             SelectedBuilding = null;
         }
         #endregion
@@ -206,6 +242,7 @@ namespace Agentstvo23.ViewModels
         private void LoadAsync()
         {
             BuildingsList = BuildingData.GetBuilding();
+            DistinctAssignations = DataBase.Buildings.Select(p => p.AssignationBuilding).Distinct().ToList();
         }
 
 
@@ -247,6 +284,14 @@ namespace Agentstvo23.ViewModels
             if (e.Item is not Building building || string.IsNullOrEmpty(cadastralBlockFilter)) return;
 
             if (!building.CadastralBlock.Contains(cadastralBlockFilter))
+                e.Accepted = false;
+        }
+
+        private void OnAssignationFilter(object sender, FilterEventArgs e)
+        {
+            if (e.Item is not Building building || string.IsNullOrEmpty(assignationFilter)) return;
+
+            if (!building.AssignationBuilding.Contains(assignationFilter))
                 e.Accepted = false;
         }
     }

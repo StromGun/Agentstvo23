@@ -1,4 +1,5 @@
-﻿using Agentstvo23.ViewModels.Base;
+﻿using Agentstvo23.DAL.Entities;
+using Agentstvo23.ViewModels.Base;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace Agentstvo23.ViewModels
         private string _cadastralBlock;
         private int _yearBuilt;
         private int _floors;
-        private int _undergroundFloors;
+        private int? _undergroundFloors;
 
 
         #region Properties
@@ -30,13 +31,28 @@ namespace Agentstvo23.ViewModels
         public decimal CadastralCost { get => _cadastralCost; set => Set(ref _cadastralCost, value); }
         public decimal CadastralCostPerMeter { get => _cadastralCostPerMeter; set => Set(ref _cadastralCostPerMeter, value); }
         public int Floors { get => _floors; set => Set(ref _floors, value); }
-        public int UndergroundFloors { get => _undergroundFloors; set => Set(ref _undergroundFloors, value); }
+        public int? UndergroundFloors { get => _undergroundFloors; set => Set(ref _undergroundFloors, value); }
         public string CadastralNumber { get => _cadastralNumber; set => Set(ref _cadastralNumber, value); }
         public string CadastralBlock { get => _cadastralBlock; set => Set(ref _cadastralBlock, value); }
         public int YearBuilt { get => _yearBuilt; set => Set(ref _yearBuilt, value); }
 
         #endregion
 
+
+        public BuildingEditorViewModel(Building building)
+        {
+            Id = building.Id;
+            Address = building.Adress;
+            Area = building.Area;
+            AssignationBuilding = building.AssignationBuilding;
+            CadastralCost = building.CadastralCostValue;
+            CadastralCostPerMeter = building.CostPerMeter;
+            Floors = building.Floors;
+            UndergroundFloors = building.UndergroundFloors;
+            CadastralNumber = building.CadastralNumber;
+            CadastralBlock = building.CadastralBlock;
+            YearBuilt = building.YearBuilt;
+        }
 
         public string this[string columnName]
         {
