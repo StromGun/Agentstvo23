@@ -150,8 +150,10 @@ namespace Agentstvo23.ViewModels
         public Building SelectedBuilding { get => selectedBuilding; set => Set(ref selectedBuilding, value); }
 
         #region DistinctAssignations : string - Уникальные значения типа здания
+
         private List<string> distinctAssignations;
-        public List<string> DistinctAssignations { get => distinctAssignations; set => Set(ref distinctAssignations, value); } 
+        public List<string> DistinctAssignations { get => distinctAssignations; set => Set(ref distinctAssignations, value); }
+        
         #endregion
 
 

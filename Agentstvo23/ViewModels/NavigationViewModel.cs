@@ -43,6 +43,15 @@ namespace Agentstvo23.ViewModels
             MainModel.CurrentView = MainModel.BuildingsVm;
         }
 
+        private LambdaCommand? _ShowApartmentsView;
+        public ICommand ShowApartmentsView => _ShowApartmentsView
+            ??= new(ShowApartmentExecuted);
+
+        private void ShowApartmentExecuted()
+        {
+            MainModel.CurrentView = MainModel.ApartmentsVm;
+        }
+
         #endregion
 
         public NavigationViewModel(RealEstateDB db, IBuildingCount buildingCountService)

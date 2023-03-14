@@ -10,6 +10,9 @@
     <DataTemplate DataType="{x:Type vm:RealEstatesViewModel}">
         <view:RealEstatesView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ApartmentsViewModel}">
+        <view:ApartmentsView/>
+    </DataTemplate>
     
     
 </ResourceDictionary>

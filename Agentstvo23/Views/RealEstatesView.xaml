@@ -44,7 +44,7 @@
                         <ColumnDefinition Width="0.1*"/>
                     </Grid.ColumnDefinitions>
                     
-                    <WrapPanel Orientation="Horizontal" ItemWidth="170">
+                    <WrapPanel Orientation="Horizontal" ItemWidth="190">
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Адрес" Style="{StaticResource TblockCommon}"/>
                         <TextBox Style="{StaticResource TboxCommon}" Text="{Binding AdressFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
@@ -67,7 +67,7 @@
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Площадь" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
-                        <WrapPanel ItemWidth="70">
+                        <WrapPanel ItemWidth="90">
                             <TextBox Style="{StaticResource TboxCommon}"/>
                             <TextBox Style="{StaticResource TboxCommon}"/>
                         </WrapPanel>
@@ -75,7 +75,7 @@
 
                         <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Цена за метр" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
-                            <WrapPanel ItemWidth="80">
+                            <WrapPanel ItemWidth="90">
                             <TextBox Style="{StaticResource TboxCommon}"/>
                             <TextBox Style="{StaticResource TboxCommon}"/>
                         </WrapPanel>
@@ -83,7 +83,7 @@
 
                     <StackPanel Style="{StaticResource StackPanel-Margin5}">
                         <TextBlock Text="Кадастровая стоимость" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
-                        <WrapPanel ItemWidth="80">
+                        <WrapPanel ItemWidth="90">
                             <TextBox Style="{StaticResource TboxCommon}" />
                             <TextBox Style="{StaticResource TboxCommon}" />
                         </WrapPanel>

@@ -17,6 +17,7 @@
 
             <Border BorderBrush="Black" BorderThickness="0 0 1 0">
                 <WrapPanel Orientation="Horizontal" Grid.Column="0" Margin="0" ItemHeight="125" ItemWidth="125">
+                    
                     <Button Style="{StaticResource NavigationBtn}" Command="{Binding ShowRealEstatesView}">
                         <Button.Content>
                             <StackPanel HorizontalAlignment="Stretch">
@@ -25,8 +26,16 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
-                
-                    <Button Style="{StaticResource NavigationBtn}"/>
+
+                    <Button Style="{StaticResource NavigationBtn}" Command="{Binding ShowApartmentsView}">
+                        <Button.Content>
+                            <StackPanel HorizontalAlignment="Stretch">
+                                <Image Source="/Resources/Images/location_city.png" MaxHeight="90"/>
+                                <TextBlock Text="Квартиры" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    
                     <Button Style="{StaticResource NavigationBtn}"/>
                     <Button Style="{StaticResource NavigationBtn}"/>
                 </WrapPanel>

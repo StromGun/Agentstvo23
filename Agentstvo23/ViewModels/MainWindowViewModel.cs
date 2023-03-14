@@ -15,8 +15,9 @@ namespace Agentstvo23.ViewModels
         public ViewModel CurrentView { get => currentView; set => Set(ref currentView, value); }
 
 
-        public NavigationViewModel NavigationVm { get; }
-        public RealEstatesViewModel BuildingsVm { get; }
+        public readonly NavigationViewModel NavigationVm;
+        public readonly RealEstatesViewModel BuildingsVm;
+        public readonly ApartmentsViewModel ApartmentsVm;
 
 
         #region Commands
@@ -48,7 +49,8 @@ namespace Agentstvo23.ViewModels
 
         public MainWindowViewModel(
             RealEstatesViewModel buildingsVm,
-            NavigationViewModel Navigation
+            NavigationViewModel Navigation,
+            ApartmentsViewModel apartmentsView
             )
         {
             NavigationVm = Navigation;
@@ -56,6 +58,9 @@ namespace Agentstvo23.ViewModels
 
             BuildingsVm = buildingsVm;
             buildingsVm.MainModel = this;
+
+            ApartmentsVm = apartmentsView;
+            
 
 
         }
