@@ -2,6 +2,8 @@
 using Agentstvo23.Infrastructure.Commands;
 using Agentstvo23.Services.Interfaces;
 using Agentstvo23.ViewModels.Base;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -14,7 +16,12 @@ namespace Agentstvo23.ViewModels
         private int countEstate;
         private int countNonResidentialBuilding;
         private int countResidentialBuilding;
-        private int countApartmentBuilding; 
+        private int countApartmentBuilding;
+
+        private int countApartmentAll;
+        private int countPremise;
+        private int countRoom;
+        private int countApartment;
         #endregion
 
         public string Title { get => _title; set => Set(ref _title, value); }
@@ -29,11 +36,18 @@ namespace Agentstvo23.ViewModels
         public int CountNonResidentialBuilding { get => countNonResidentialBuilding; set => Set(ref countNonResidentialBuilding, value); }
         public int CountResidentialBuilding { get => countResidentialBuilding; set => Set(ref countResidentialBuilding, value); }
         public int CountApartmentBuilding { get => countApartmentBuilding; set => Set(ref countApartmentBuilding, value); }
+
+        public int CountApartment { get => countApartment; set => Set(ref countApartment, value); }
+        public int CountPremise { get => countPremise; set => Set(ref countPremise, value); }
+        public int CountRoom { get => countRoom; set => Set(ref countRoom, value); }
+        public int CountApartmentAll { get => countApartmentAll; set => Set(ref countApartmentAll, value); }
         #endregion
 
 
 
         #region Commands
+
+        #region ShowRealEstatesView : Command
         private LambdaCommand? _ShowRealEstatesView;
         public ICommand ShowRealEstatesView => _ShowRealEstatesView
             ??= new(ShowRealEstatesViewExecuted);
@@ -42,7 +56,9 @@ namespace Agentstvo23.ViewModels
         {
             MainModel.CurrentView = MainModel.BuildingsVm;
         }
+        #endregion
 
+        #region ShowApartmentsView : Command
         private LambdaCommand? _ShowApartmentsView;
         public ICommand ShowApartmentsView => _ShowApartmentsView
             ??= new(ShowApartmentExecuted);
@@ -50,7 +66,8 @@ namespace Agentstvo23.ViewModels
         private void ShowApartmentExecuted()
         {
             MainModel.CurrentView = MainModel.ApartmentsVm;
-        }
+        } 
+        #endregion
 
         #endregion
 
@@ -67,6 +84,11 @@ namespace Agentstvo23.ViewModels
             countNonResidentialBuilding = await BuildingCountService.GetNonResidentalCountAsync().ConfigureAwait(false);
             countResidentialBuilding = await BuildingCountService.GetResidentalCountAsync();
             countApartmentBuilding = await BuildingCountService.GetApartmentCountAsync().ConfigureAwait(false);
+
+            CountApartmentAll = await DataBase.Apartments.CountAsync();
+            CountApartment = await DataBase.Apartments.Where(p => p.ApartmentType == "кв").CountAsync();
+            CountPremise = await DataBase.Apartments.Where(p => p.ApartmentType == "пом").CountAsync();
+            CountRoom = await DataBase.Apartments.Where(p => p.ApartmentType == "к").CountAsync();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Agentstvo23.DAL.Context;
 using Agentstvo23.DAL.Entities;
+using Agentstvo23.Infrastructure.Commands;
 using Agentstvo23.Services.Interfaces;
 using Agentstvo23.ViewModels.Base;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace Agentstvo23.ViewModels
 {
@@ -69,16 +71,24 @@ namespace Agentstvo23.ViewModels
 
 
 
+        #region Commands
+        private ICommand _LoadedAsync;
+        public ICommand LoadedAsyncCmd => _LoadedAsync
+            ??= new LambdaCommand(LoadedAsyncExecuted);
+        private void LoadedAsyncExecuted()
+        {
+            LoadAsync();
+        } 
+        #endregion
+
 
         public ApartmentsViewModel(RealEstateDB db, IUserDialog userDialog)
         {
             DataBase = db;
             UserDialog = userDialog;
-
-            LoadData();
         }
 
-        private void LoadData()
+        private void LoadAsync()
         {
             DataBase.Apartments.Load();
             ApartmentsList = DataBase.Apartments.Local.ToObservableCollection();

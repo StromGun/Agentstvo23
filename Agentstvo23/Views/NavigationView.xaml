@@ -17,7 +17,7 @@
 
             <Border BorderBrush="Black" BorderThickness="0 0 1 0">
                 <WrapPanel Orientation="Horizontal" Grid.Column="0" Margin="0" ItemHeight="125" ItemWidth="125">
-                    
+                    <MediaElement Name="gif" MediaEnded="gif_MediaEnded" UnloadedBehavior="Manual" Source="/Resources/Images/4x.gif" LoadedBehavior="Play" Stretch="Uniform"/>
                     <Button Style="{StaticResource NavigationBtn}" Command="{Binding ShowRealEstatesView}">
                         <Button.Content>
                             <StackPanel HorizontalAlignment="Stretch">
@@ -35,17 +35,35 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
+
+                    <Button Style="{StaticResource NavigationBtn}">
+                        <Button.Content>
+                            <StackPanel HorizontalAlignment="Stretch">
+                                <!--<Image Source="/Resources/Images/fSHGT0HI8rA.jpg" />-->
+                                
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
                     
-                    <Button Style="{StaticResource NavigationBtn}"/>
                     <Button Style="{StaticResource NavigationBtn}"/>
                 </WrapPanel>
             </Border>
 
             <StackPanel Grid.Column="1">
-                <TextBlock Style="{StaticResource TblockCommon}">Количество недвижимости: <Run Text="{Binding CountEstate}" FontWeight="Bold" /></TextBlock>
-                <TextBlock Style="{StaticResource TblockCommon}">Количество нежилых зданий: <Run Text="{Binding CountNonResidentialBuilding}" FontWeight="Bold"/></TextBlock>
-                <TextBlock Style="{StaticResource TblockCommon}">Количество жилых домов: <Run Text="{Binding CountResidentialBuilding}" FontWeight="Bold"/></TextBlock>
-                <TextBlock Style="{StaticResource TblockCommon}">Количество многоквартиных домов: <Run Text="{Binding CountApartmentBuilding}" FontWeight="Bold"/></TextBlock>
+                <StackPanel>
+                    <TextBlock Text="Недвижимости:" Style="{StaticResource TblockCommon}" FontWeight="Bold"/>
+                    <TextBlock Style="{StaticResource TblockCommon}">Количество недвижимости: <Run Text="{Binding CountEstate}" FontWeight="Bold" /></TextBlock>
+                    <TextBlock Style="{StaticResource TblockCommon}">Количество нежилых зданий: <Run Text="{Binding CountNonResidentialBuilding}" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Style="{StaticResource TblockCommon}">Количество жилых домов: <Run Text="{Binding CountResidentialBuilding}" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Style="{StaticResource TblockCommon}">Количество многоквартиных домов: <Run Text="{Binding CountApartmentBuilding}" FontWeight="Bold"/></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="0 10">
+                    <TextBlock Text="Квартиры:" Style="{StaticResource TblockCommon}" FontWeight="Bold"/>
+                    <TextBlock Style="{StaticResource TblockCommon}">Общее количество квартир: <Run Text="{Binding CountApartmentAll}" FontWeight="Bold" /></TextBlock>
+                    <TextBlock Style="{StaticResource TblockCommon}">Количество квартир: <Run Text="{Binding CountApartment}" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Style="{StaticResource TblockCommon}">Количество помещений: <Run Text="{Binding CountPremise}" FontWeight="Bold"/></TextBlock>
+                    <TextBlock Style="{StaticResource TblockCommon}">Количество комнат: <Run Text="{Binding CountRoom}" FontWeight="Bold"/></TextBlock>
+                </StackPanel>
             </StackPanel>
             
         </Grid>
