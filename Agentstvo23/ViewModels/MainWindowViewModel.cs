@@ -18,6 +18,7 @@ namespace Agentstvo23.ViewModels
         public readonly NavigationViewModel NavigationVm;
         public readonly RealEstatesViewModel BuildingsVm;
         public readonly ApartmentsViewModel ApartmentsVm;
+        public readonly AuthorizationViewModel AuthorizationVm;
 
 
         #region Commands
@@ -50,7 +51,8 @@ namespace Agentstvo23.ViewModels
         public MainWindowViewModel(
             RealEstatesViewModel buildingsVm,
             NavigationViewModel Navigation,
-            ApartmentsViewModel apartmentsView
+            ApartmentsViewModel apartmentsView,
+            AuthorizationViewModel authorizationView
             )
         {
             NavigationVm = Navigation;
@@ -60,14 +62,14 @@ namespace Agentstvo23.ViewModels
             buildingsVm.MainModel = this;
 
             ApartmentsVm = apartmentsView;
-            
 
+            AuthorizationVm = authorizationView;
 
         }
 
         public async Task LoadAsync()
         {
-            CurrentView = NavigationVm;
+            CurrentView = AuthorizationVm;
             await NavigationVm.LoadAsync();
         }
     }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Agentstvo23.Views
 {
     /// <summary>
-    /// Логика взаимодействия для NavigationView.xaml
+    /// Логика взаимодействия для AuthorizationView.xaml
     /// </summary>
-    public partial class NavigationView : UserControl
+    public partial class AuthorizationView : UserControl
     {
-        public NavigationView()
+        public AuthorizationView()
         {
             InitializeComponent();
         }

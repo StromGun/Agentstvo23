@@ -6,6 +6,7 @@ namespace Agentstvo23.ViewModels
     {
         public static IServiceCollection AddViewModels(this IServiceCollection services) => services
             .AddScoped<MainWindowViewModel>()
+            .AddSingleton<AuthorizationViewModel>()
             .AddTransient<NavigationViewModel>()
             .AddTransient<RealEstatesViewModel>()
             .AddTransient<ApartmentsViewModel>()

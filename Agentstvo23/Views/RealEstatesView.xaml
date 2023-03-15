@@ -90,7 +90,7 @@
                     </StackPanel>
 
                 </WrapPanel>
-                    <Button Grid.Column="1" VerticalAlignment="Bottom" Content="Применить"/>
+                    <Button Grid.Column="1" VerticalAlignment="Bottom" Content="Применить" Style="{StaticResource BtnCommon}"/>
                 </Grid>
             </Expander>
 

@@ -30,7 +30,7 @@
 
                 <Button Style="{StaticResource BtnImage}"/>
 
-                <TextBox Style="{StaticResource TboxCommon}" Margin="5 0" MinWidth="50" Text="{Binding BuildingFilter, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Style="{StaticResource TboxCommon}" Margin="5 0" MinWidth="50"/>
 
                 <ComboBox BorderThickness="0 0 0 2" VerticalContentAlignment="Center" MinWidth="100" 
                           IsReadOnly="False" IsEditable="True" IsSynchronizedWithCurrentItem="True" SelectedValue="{Binding AssignationFilter}"
@@ -44,30 +44,30 @@
                         <ColumnDefinition Width="0.1*"/>
                     </Grid.ColumnDefinitions>
 
-                    <WrapPanel Orientation="Horizontal" ItemWidth="170">
+                    <WrapPanel Orientation="Horizontal" ItemWidth="190">
                         <StackPanel Style="{StaticResource StackPanel-Margin5}">
                             <TextBlock Text="Адрес" Style="{StaticResource TblockCommon}"/>
-                            <TextBox Style="{StaticResource TboxCommon}" Text="{Binding AdressFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource TboxCommon}"/>
                         </StackPanel>
 
                         <StackPanel Style="{StaticResource StackPanel-Margin5}">
-                            <TextBlock Text="Количество этажей" Style="{StaticResource TblockCommon}"/>
-                            <TextBox Style="{StaticResource TboxCommon}" Text="{Binding FloorFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Text="Номер квартиры" Style="{StaticResource TblockCommon}"/>
+                            <TextBox Style="{StaticResource TboxCommon}" />
                         </StackPanel>
 
                         <StackPanel Style="{StaticResource StackPanel-Margin5}">
-                            <TextBlock Text="Кол-во подземных этажей" TextWrapping="Wrap" Style="{StaticResource TblockCommon}"/>
-                            <TextBox Style="{StaticResource TboxCommon}" Text="{Binding UndergroundFloorFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Text="Тип квартиры" TextWrapping="Wrap" Style="{StaticResource TblockCommon}"/>
+                            <TextBox Style="{StaticResource TboxCommon}" />
                         </StackPanel>
 
                         <StackPanel Style="{StaticResource StackPanel-Margin5}">
-                            <TextBlock Text="Кадастровый блок" Style="{StaticResource TblockCommon}"/>
-                            <TextBox Style="{StaticResource TboxCommon}" Text="{Binding CadastralBlockFilter, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock Text="Кадастровый номер здания" Style="{StaticResource TblockCommon}"/>
+                            <TextBox Style="{StaticResource TboxCommon}"/>
                         </StackPanel>
 
                         <StackPanel Style="{StaticResource StackPanel-Margin5}">
                             <TextBlock Text="Площадь" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
-                            <WrapPanel ItemWidth="70">
+                            <WrapPanel ItemWidth="90">
                                 <TextBox Style="{StaticResource TboxCommon}"/>
                                 <TextBox Style="{StaticResource TboxCommon}"/>
                             </WrapPanel>
@@ -75,7 +75,7 @@
 
                         <StackPanel Style="{StaticResource StackPanel-Margin5}">
                             <TextBlock Text="Цена за метр" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
-                            <WrapPanel ItemWidth="80">
+                            <WrapPanel ItemWidth="90">
                                 <TextBox Style="{StaticResource TboxCommon}"/>
                                 <TextBox Style="{StaticResource TboxCommon}"/>
                             </WrapPanel>
@@ -83,14 +83,14 @@
 
                         <StackPanel Style="{StaticResource StackPanel-Margin5}">
                             <TextBlock Text="Кадастровая стоимость" Style="{StaticResource TblockCommon}" HorizontalAlignment="Center"/>
-                            <WrapPanel ItemWidth="80">
+                            <WrapPanel ItemWidth="90">
                                 <TextBox Style="{StaticResource TboxCommon}" />
                                 <TextBox Style="{StaticResource TboxCommon}" />
                             </WrapPanel>
                         </StackPanel>
 
                     </WrapPanel>
-                    <Button Grid.Column="1" VerticalAlignment="Bottom" Content="Применить"/>
+                    <Button Grid.Column="1" VerticalAlignment="Bottom" Content="Применить" Style="{StaticResource BtnCommon}"/>
                 </Grid>
             </Expander>
 
@@ -119,14 +119,14 @@
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
                 <DataGridTextColumn Header="Кадастровый номер" Binding="{Binding CadastralNumber}" Width="*"/>
                 <DataGridTextColumn Header="Адрес" Binding="{Binding Adress}" Width="*"/>
-                <DataGridTextColumn Header="ApartmentType" Binding="{Binding ApartmentType}" Width="*"/>
-                <DataGridTextColumn Header="ApartmentValue" Binding="{Binding ApartmentValue}" Width="*"/>
-                <DataGridTextColumn Header="Area" Binding="{Binding Area, StringFormat={}{0:N2} м², ConverterCulture=ru-RU}" Width="*"/>
-                <DataGridTextColumn Header="CadastralCostValue" Binding="{Binding CadastralCostValue, StringFormat={}{0:C2}, ConverterCulture=ru-RU}" Width="*"/>
-                <DataGridTextColumn Header="CostPerMeter" Binding="{Binding CostPerMeter, StringFormat={}{0:C2}, ConverterCulture=ru-RU}" Width="*"/>
-                <DataGridTextColumn Header="AssignationCode" Binding="{Binding AssignationCode}" Width="*"/>
-                <DataGridTextColumn Header="AssignationType" Binding="{Binding AssignationType}" Width="*"/>
-                <DataGridTextColumn Header="BuildingCadastralNumber" Binding="{Binding BuildingCadastralNumber}" Width="*"/>
+                <DataGridTextColumn Header="Тип квартиры" Binding="{Binding ApartmentType}" Width="*"/>
+                <DataGridTextColumn Header="Номер квартиры" Binding="{Binding ApartmentValue}" Width="*"/>
+                <DataGridTextColumn Header="Площадь" Binding="{Binding Area, StringFormat={}{0:N2} м², ConverterCulture=ru-RU}" Width="*"/>
+                <DataGridTextColumn Header="Кадастровая стоимость" Binding="{Binding CadastralCostValue, StringFormat={}{0:C2}, ConverterCulture=ru-RU}" Width="*"/>
+                <DataGridTextColumn Header="Цена за метр" Binding="{Binding CostPerMeter, StringFormat={}{0:C2}, ConverterCulture=ru-RU}" Width="*"/>
+                <DataGridTextColumn Header="Назначение" Binding="{Binding AssignationCode}" Width="*"/>
+                <DataGridTextColumn Header="Вид" Binding="{Binding AssignationType}" Width="*"/>
+                <DataGridTextColumn Header="Кадастровый номер здания" Binding="{Binding BuildingCadastralNumber}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

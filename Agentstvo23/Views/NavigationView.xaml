@@ -17,7 +17,6 @@
 
             <Border BorderBrush="Black" BorderThickness="0 0 1 0">
                 <WrapPanel Orientation="Horizontal" Grid.Column="0" Margin="0" ItemHeight="125" ItemWidth="125">
-                    <MediaElement Name="gif" MediaEnded="gif_MediaEnded" UnloadedBehavior="Manual" Source="/Resources/Images/4x.gif" LoadedBehavior="Play" Stretch="Uniform"/>
                     <Button Style="{StaticResource NavigationBtn}" Command="{Binding ShowRealEstatesView}">
                         <Button.Content>
                             <StackPanel HorizontalAlignment="Stretch">
@@ -30,7 +29,7 @@
                     <Button Style="{StaticResource NavigationBtn}" Command="{Binding ShowApartmentsView}">
                         <Button.Content>
                             <StackPanel HorizontalAlignment="Stretch">
-                                <Image Source="/Resources/Images/location_city.png" MaxHeight="90"/>
+                                <Image Source="/Resources/Images/apartment.png" MaxHeight="90"/>
                                 <TextBlock Text="Квартиры" HorizontalAlignment="Center"/>
                             </StackPanel>
                         </Button.Content>
