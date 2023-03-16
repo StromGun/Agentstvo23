@@ -4,22 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:Agentstvo23.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:beh="clr-namespace:Agentstvo23.Infrastructure.Behaviours"
              xmlns:local="clr-namespace:Agentstvo23.Views"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance {x:Type vm:AuthorizationViewModel}}"
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <TextBlock Text="Логин:" Style="{StaticResource TblockCommon}"/>
             <TextBox Text="{Binding Login}" Width="120"/>
         </StackPanel>
 
         <StackPanel Margin="0 5" Orientation="Horizontal" HorizontalAlignment="Center">
             <TextBlock Text="Пароль:" Style="{StaticResource TblockCommon}"/>
-            <PasswordBox Width="120"/>
+            <PasswordBox Width="120">
+                <i:Interaction.Behaviors>
+                    <beh:PasswordBehavior Password="{Binding Password, Mode=TwoWay}"/>
+                </i:Interaction.Behaviors>
+            </PasswordBox>
         </StackPanel>
 
-        <Button Style="{StaticResource BtnCommon}" Content="Войти" />
+        <Button Style="{StaticResource BtnCommon}" Content="Войти" Command="{Binding AuthorizationCmd}"/>
     </StackPanel>
 </UserControl>

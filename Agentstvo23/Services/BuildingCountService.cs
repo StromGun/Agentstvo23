@@ -20,22 +20,22 @@ namespace Agentstvo23.Services
 
         public async Task<int> GetCountAsync()
         {
-            return BuildingCount = await db.Buildings.CountAsync().ConfigureAwait(false);
+            return BuildingCount = await db.Buildings.CountAsync();
         }
 
         public async Task<int> GetResidentalCountAsync()
         {
-            return BuildingCount = await db.Buildings.Where(p => p.AssignationBuilding == "Жилой дом").CountAsync().ConfigureAwait(false);
+            return BuildingCount = await db.Buildings.Where(p => p.AssignationBuilding == "Жилой дом").CountAsync();
         }
 
         public async Task<int> GetNonResidentalCountAsync()
         {
-            return BuildingCount = await db.Buildings.Where(p => p.AssignationBuilding == "Нежилое здание").CountAsync().ConfigureAwait(false);
+            return BuildingCount = await db.Buildings.Where(p => p.AssignationBuilding == "Нежилое здание").CountAsync();
         }      
 
         public async Task<int> GetApartmentCountAsync()
         {
-            return BuildingCount = await db.Buildings.Where(p => p.AssignationBuilding == "Многоквартирный дом").CountAsync().ConfigureAwait(false);
+            return BuildingCount = await db.Buildings.Where(p => p.AssignationBuilding == "Многоквартирный дом").CountAsync();
         }
     }
 }

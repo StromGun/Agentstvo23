@@ -8,6 +8,7 @@ namespace Agentstvo23.DAL.Context
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Apartment> Apartments { get; set; }
         public DbSet<BuildingExtended> BuildingsExtended { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         public RealEstateDB(DbContextOptions<RealEstateDB> options) : base(options)

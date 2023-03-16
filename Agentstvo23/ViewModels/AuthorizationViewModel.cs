@@ -1,6 +1,10 @@
 ﻿using Agentstvo23.DAL.Context;
+using Agentstvo23.Infrastructure.Commands;
 using Agentstvo23.ViewModels.Base;
+using System.Linq;
 using System.Security;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Agentstvo23.ViewModels
 {
@@ -8,14 +12,35 @@ namespace Agentstvo23.ViewModels
     {
         private string _title = "Авторизация";
         private string login;
-        private SecureString password;
+        private string password;
 
 
         private readonly RealEstateDB DataBase;
 
+        public MainWindowViewModel mainModel { get; set; }
+
         public string Title { get => _title; set => Set(ref _title, value); }
         public string Login { get => login; set => Set(ref login, value); }
-        public SecureString Password { get => password; set => Set(ref password, value); }
+        public string Password { get => password; set => Set(ref password, value); }
+
+
+        #region Commands
+        private LambdaCommand? authorization;
+        public ICommand AuthorizationCmd => authorization
+            ??= new(CanAuthorizationExecuted);
+        private void CanAuthorizationExecuted()
+        {
+            var user = DataBase.Users.FirstOrDefault(p => p.Login.Equals(Login) && p.Password.Equals(Password));
+            if (user != null)
+            {
+                mainModel.CurrentView = mainModel.NavigationVm;
+                mainModel.User = user;
+                mainModel.Load();
+            }
+            else MessageBox.Show("lox");
+        }
+        #endregion
+
 
         public AuthorizationViewModel(RealEstateDB dB)
         {

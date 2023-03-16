@@ -1,7 +1,10 @@
 ﻿using Agentstvo23.DAL.Context;
+using Agentstvo23.DAL.Entities;
 using Agentstvo23.Infrastructure.Commands;
+using Agentstvo23.Infrastructure.Events;
 using Agentstvo23.ViewModels.Base;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Agentstvo23.ViewModels
@@ -10,10 +13,11 @@ namespace Agentstvo23.ViewModels
     {
         private string _title = "Agentstvo23";
         private ViewModel currentView;
+        private User user = null;
 
         public string Title { get => _title; set => Set(ref _title, value); }
         public ViewModel CurrentView { get => currentView; set => Set(ref currentView, value); }
-
+        public User User { get => user; set => Set(ref user, value); }
 
         public readonly NavigationViewModel NavigationVm;
         public readonly RealEstatesViewModel BuildingsVm;
@@ -64,13 +68,31 @@ namespace Agentstvo23.ViewModels
             ApartmentsVm = apartmentsView;
 
             AuthorizationVm = authorizationView;
+            authorizationView.mainModel = this;
 
         }
 
         public async Task LoadAsync()
         {
+            Load();
             CurrentView = AuthorizationVm;
-            await NavigationVm.LoadAsync();
         }
+
+
+        public void Load()
+        {
+            if (User != null)
+            {
+                AdminVisibility = Visibility.Visible;
+            }
+            else
+            {
+                AdminVisibility = Visibility.Collapsed;
+            }
+        }
+
+        private Visibility visibility;
+        public Visibility AdminVisibility { get => visibility; set => Set(ref visibility, value); }
+
     }
 }
