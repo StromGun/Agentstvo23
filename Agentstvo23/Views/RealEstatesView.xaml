@@ -96,17 +96,20 @@
 
         </StackPanel>
  
-        <DataGrid ItemsSource="{Binding BuildingsView}" Name="Test" SelectedItem="{Binding SelectedBuilding}" SelectionMode="Single" 
-                  IsReadOnly="True" AutoGenerateColumns="False" Margin="5 2" >
+        <DataGrid ItemsSource="{Binding BuildingsView}" Name="Test" SelectedItem="{Binding SelectedBuilding}"
+                  SelectionMode="Single" IsReadOnly="True" AutoGenerateColumns="False" Margin="5 2" >
             
             <DataGrid.Resources>
                 <ContextMenu  x:Key="CtxMenu">
+                    <MenuItem Header="Копировать"
+                              Command="Copy"/>
                     <MenuItem Header="Редактировать" 
                               Command="{Binding Path=DataContext.EditBuildingCmd, 
                         RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
-                        <MenuItem Header="Удалить" 
-                                  Command="{Binding Path=DataContext.RemoveBuilding, 
-                            RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                    <MenuItem Header="Удалить" 
+                                Command="{Binding Path=DataContext.RemoveBuilding, 
+                        RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                    
                 </ContextMenu>
             </DataGrid.Resources>
             <DataGrid.RowStyle>
@@ -116,17 +119,17 @@
             </DataGrid.RowStyle>
             
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Кадастровый номер" Binding="{Binding CadastralNumber}"/>
-                <DataGridTextColumn Header="Адрес" Binding="{Binding Adress}"/>
-                <DataGridTextColumn Header="Площадь" Binding="{Binding Area, StringFormat={}{0:N2} м², ConverterCulture=ru-RU}"/>
-                <DataGridTextColumn Header="Назначение здания" Binding="{Binding AssignationBuilding}"/>
-                <DataGridTextColumn Header="Кадастровый блок" Binding="{Binding CadastralBlock}"/>
-                <DataGridTextColumn Header="Кадастровая стоимость" Binding="{Binding CadastralCostValue, StringFormat={}{0:C2}, ConverterCulture=ru-RU}"/>
-                <DataGridTextColumn Header="Стоимость за метр" Binding="{Binding CostPerMeter, StringFormat={}{0:C2}, ConverterCulture=ru-RU}"/>
-                <DataGridTextColumn Header="Год постройки" Binding="{Binding YearBuilt}"/>
-                <DataGridTextColumn Header="Количество этажей" Binding="{Binding Floors}"/>
-                <DataGridTextColumn Header="Количество подземных этажей" Binding="{Binding UndergroundFloors}"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="Кадастровый номер" Binding="{Binding CadastralNumber}" Width="*"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Adress}" Width="*"/>
+                <DataGridTextColumn Header="Площадь" Binding="{Binding Area, StringFormat={}{0:N2} м², ConverterCulture=ru-RU}" Width="*"/>
+                <DataGridTextColumn Header="Назначение здания" Binding="{Binding AssignationBuilding}" Width="*"/>
+                <DataGridTextColumn Header="Кадастровый блок" Binding="{Binding CadastralBlock}" Width="*"/>
+                <DataGridTextColumn Header="Кадастровая стоимость" Binding="{Binding CadastralCostValue, StringFormat={}{0:C2}, ConverterCulture=ru-RU}" Width="*"/>
+                <DataGridTextColumn Header="Стоимость за метр" Binding="{Binding CostPerMeter, StringFormat={}{0:C2}, ConverterCulture=ru-RU}" Width="*"/>
+                <DataGridTextColumn Header="Год постройки" Binding="{Binding YearBuilt}" Width="*"/>
+                <DataGridTextColumn Header="Количество этажей" Binding="{Binding Floors}" Width="*"/>
+                <DataGridTextColumn Header="Количество подземных этажей" Binding="{Binding UndergroundFloors}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

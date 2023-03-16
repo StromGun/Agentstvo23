@@ -1,7 +1,7 @@
 ﻿using NetTopologySuite.Geometries;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Agentstvo23.DAL.Entities
+namespace Agentstvo23.DAL.Entities.Estates
 {
     public class BuildingExtended
     {

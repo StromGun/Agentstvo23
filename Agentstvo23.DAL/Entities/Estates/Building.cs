@@ -1,4 +1,4 @@
-﻿namespace Agentstvo23.DAL.Entities
+﻿namespace Agentstvo23.DAL.Entities.Estates
 {
     public class Building
     {

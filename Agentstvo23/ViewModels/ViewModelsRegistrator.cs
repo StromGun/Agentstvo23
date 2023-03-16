@@ -5,7 +5,7 @@ namespace Agentstvo23.ViewModels
     static class ViewModelsRegistrator
     {
         public static IServiceCollection AddViewModels(this IServiceCollection services) => services
-            .AddTransient<MainWindowViewModel>()
+            .AddScoped<MainWindowViewModel>()
             .AddScoped<AuthorizationViewModel>()
             .AddTransient<NavigationViewModel>()
             .AddTransient<RealEstatesViewModel>()

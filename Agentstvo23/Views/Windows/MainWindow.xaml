@@ -8,22 +8,33 @@
         mc:Ignorable="d"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="Agentstvo23" MinHeight="450" MinWidth="800"
-        Style="{StaticResource defaultWindow}">
+        Style="{StaticResource defaultWindow}" Icon="/Resources/Images/logo.png">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadAsyncCmd}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <DockPanel Background="{StaticResource ColorSecondary}">
-        <Grid DockPanel.Dock="Top" Background="{StaticResource ColorCommon}" HorizontalAlignment="Stretch" MaxHeight="50">
-            <Image Source="/Resources/Images/location_city.png" MaxHeight="50"  HorizontalAlignment="Left"/>
+    <Grid Background="{StaticResource ColorSecondary}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.05*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Background="{StaticResource ColorCommon}" HorizontalAlignment="Stretch" MaxHeight="50">
+            <Image Source="/Resources/Images/logo.png" MaxHeight="50"  HorizontalAlignment="Left" Margin="1"/>
             <TextBlock Text="{Binding ElementName=CControl, Path=Content.Title}" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button Content="На главную" Command="{Binding GoMainCmd}" Style="{StaticResource BtnCommon}" Visibility="{Binding AdminVisibility}"
                     VerticalAlignment="Center" HorizontalAlignment="Right"/>
         </Grid>
 
-        <ContentControl Name="CControl" Content="{Binding CurrentView}"/>
+        <ContentControl Grid.Row="1" Name="CControl" Content="{Binding CurrentView}"/>
 
-    </DockPanel>
+        <Grid Grid.Row="2" Background="{StaticResource ColorCommon}" HorizontalAlignment="Stretch" MaxHeight="30">
+            <TextBlock Style="{StaticResource TblockCommon}" HorizontalAlignment="Left">
+                
+            </TextBlock>
+        </Grid>
+    </Grid>
 </Window>

@@ -1,5 +1,5 @@
 ﻿using Agentstvo23.DAL.Context;
-using Agentstvo23.DAL.Entities;
+using Agentstvo23.DAL.Entities.Estates;
 using Agentstvo23.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;

@@ -1,5 +1,5 @@
 ﻿using Agentstvo23.DAL.Context;
-using Agentstvo23.DAL.Entities;
+using Agentstvo23.DAL.Entities.Estates;
 using Agentstvo23.Infrastructure.Commands;
 using Agentstvo23.Services.Interfaces;
 using Agentstvo23.ViewModels.Base;

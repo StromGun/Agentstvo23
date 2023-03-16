@@ -4,6 +4,7 @@ using Agentstvo23.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 
@@ -12,9 +13,11 @@ using NetTopologySuite.Geometries;
 namespace Agentstvo23.DAL.Migrations
 {
     [DbContext(typeof(RealEstateDB))]
-    partial class RealEstateDBModelSnapshot : ModelSnapshot
+    [Migration("20230316121203_initial6")]
+    partial class initial6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +72,10 @@ namespace Agentstvo23.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClientId")
+                    b.Property<int?>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Client_id")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Contact_Time")
@@ -297,9 +303,7 @@ namespace Agentstvo23.DAL.Migrations
                 {
                     b.HasOne("Agentstvo23.DAL.Entities.ClientContact.Client", "Client")
                         .WithMany("Contacts")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientId");
 
                     b.Navigation("Client");
                 });

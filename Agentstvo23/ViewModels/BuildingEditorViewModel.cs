@@ -1,4 +1,4 @@
-﻿using Agentstvo23.DAL.Entities;
+﻿using Agentstvo23.DAL.Entities.Estates;
 using Agentstvo23.ViewModels.Base;
 using Microsoft.IdentityModel.Tokens;
 using System;

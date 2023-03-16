@@ -1,4 +1,4 @@
-﻿using Agentstvo23.DAL.Entities;
+﻿using Agentstvo23.DAL.Entities.Estates;
 
 namespace Agentstvo23.Services.Interfaces
 {

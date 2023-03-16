@@ -1,5 +1,5 @@
 ﻿using Agentstvo23.DAL.Context;
-using Agentstvo23.DAL.Entities;
+using Agentstvo23.DAL.Entities.Estates;
 using System;
 using System.Collections.Generic;
 using System.IO;
