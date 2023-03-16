@@ -33,7 +33,6 @@ namespace Agentstvo23.ViewModels
         private readonly RealEstateDB DataBase;
         private readonly IBuildingCount BuildingCountService;
 
-
         #region Counts
         public int CountEstate { get => countEstate; set => Set(ref countEstate, value); }
         public int CountNonResidentialBuilding { get => countNonResidentialBuilding; set => Set(ref countNonResidentialBuilding, value); }
@@ -45,8 +44,6 @@ namespace Agentstvo23.ViewModels
         public int CountRoom { get => countRoom; set => Set(ref countRoom, value); }
         public int CountApartmentAll { get => countApartmentAll; set => Set(ref countApartmentAll, value); }
         #endregion
-
-
 
         #region Commands
 

@@ -37,7 +37,7 @@ namespace Agentstvo23.ViewModels
                 mainModel.User = user;
                 mainModel.Load();
             }
-            else MessageBox.Show("lox");
+            else MessageBox.Show("Неверные данные");
         }
         #endregion
 

@@ -142,7 +142,6 @@ namespace Agentstvo23.ViewModels
         } 
         #endregion
 
-
         private CollectionViewSource buildingsViewSource;
 
         public ICollectionView BuildingsView => buildingsViewSource?.View;
@@ -155,7 +154,6 @@ namespace Agentstvo23.ViewModels
         public List<string> DistinctAssignations { get => distinctAssignations; set => Set(ref distinctAssignations, value); }
         
         #endregion
-
 
         #region Commands
 
@@ -231,8 +229,6 @@ namespace Agentstvo23.ViewModels
         #endregion
 
         #endregion
-
-
 
         public RealEstatesViewModel(RealEstateDB db, IGetBuildingData getBuilding, IUserDialog userDialog)
         {
