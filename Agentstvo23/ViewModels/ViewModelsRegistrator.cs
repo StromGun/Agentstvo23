@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Agentstvo23.ViewModels.Test;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Agentstvo23.ViewModels
 {
@@ -10,6 +11,9 @@ namespace Agentstvo23.ViewModels
             .AddTransient<NavigationViewModel>()
             .AddTransient<RealEstatesViewModel>()
             .AddTransient<ApartmentsViewModel>()
+
+
+            .AddTransient<DataTableViewModel>()
             ;
     }
 }

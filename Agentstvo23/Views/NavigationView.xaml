@@ -41,7 +41,7 @@
                         </Button.Content>
                     </Button>
 
-                    <Button Style="{StaticResource NavigationBtn}">
+                    <Button Style="{StaticResource NavigationBtn}" Command="{Binding ShowDataView}">
                         <Button.Content>
                             <StackPanel HorizontalAlignment="Stretch">
                                 <!--<Image Source="/Resources/Images/fSHGT0HI8rA.jpg" />-->

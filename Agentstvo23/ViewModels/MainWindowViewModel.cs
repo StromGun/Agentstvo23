@@ -3,6 +3,7 @@ using Agentstvo23.DAL.Entities;
 using Agentstvo23.Infrastructure.Commands;
 using Agentstvo23.Infrastructure.Events;
 using Agentstvo23.ViewModels.Base;
+using Agentstvo23.ViewModels.Test;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -23,6 +24,7 @@ namespace Agentstvo23.ViewModels
         public readonly RealEstatesViewModel BuildingsVm;
         public readonly ApartmentsViewModel ApartmentsVm;
         public readonly AuthorizationViewModel AuthorizationVm;
+        public readonly DataTableViewModel dataTableView;
 
 
         #region Commands
@@ -56,7 +58,9 @@ namespace Agentstvo23.ViewModels
             RealEstatesViewModel buildingsVm,
             NavigationViewModel Navigation,
             ApartmentsViewModel apartmentsView,
-            AuthorizationViewModel authorizationView
+            AuthorizationViewModel authorizationView,
+
+            DataTableViewModel dataTableView
             )
         {
             NavigationVm = Navigation;
@@ -68,6 +72,8 @@ namespace Agentstvo23.ViewModels
             ApartmentsVm = apartmentsView;
 
             AuthorizationVm = authorizationView;
+            this.dataTableView = dataTableView;
+
             authorizationView.mainModel = this;
 
         }

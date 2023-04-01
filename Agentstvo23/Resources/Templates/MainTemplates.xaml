@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:Agentstvo23.ViewModels"
+                    xmlns:t="clr-namespace:Agentstvo23.ViewModels.Test"
+                    xmlns:tv="clr-namespace:Agentstvo23.Views.TEst"
                     xmlns:view="clr-namespace:Agentstvo23.Views">
     
     
@@ -15,6 +17,10 @@
     </DataTemplate>
     <DataTemplate DataType="{x:Type vm:AuthorizationViewModel}">
         <view:AuthorizationView/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type t:DataTableViewModel}">
+        <tv:DateTableView/>
     </DataTemplate>
     
     

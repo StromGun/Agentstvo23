@@ -69,6 +69,15 @@ namespace Agentstvo23.ViewModels
         }
         #endregion
 
+        private LambdaCommand? _ShowDataView;
+        public ICommand ShowDataView => _ShowDataView
+            ??= new(ShowDataExecuted);
+
+        private void ShowDataExecuted()
+        {
+            MainModel.CurrentView = MainModel.dataTableView;
+        }
+
         #region LoadAsync : Command
         private LambdaCommand? loadAsync;
         public ICommand LoadAsyncCmd => loadAsync
