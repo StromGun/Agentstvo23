@@ -8,8 +8,9 @@ namespace Agentstvo23.Services
 {
     internal class UserDialogService : IUserDialog
     {
-        public bool Edit(Building building)
+        public bool Edit(Building? building)
         {
+            if (building == null) return false;
             var building_editor_model = new BuildingEditorViewModel(building);
             var building_editor_window = new BuildingEditorWindow()
             {

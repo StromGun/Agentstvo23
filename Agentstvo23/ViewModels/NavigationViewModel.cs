@@ -27,10 +27,10 @@ namespace Agentstvo23.ViewModels
         #endregion
 
         public string Title { get => _title; set => Set(ref _title, value); }
-        private MainWindowViewModel mainModel;
-        public MainWindowViewModel MainModel { get => mainModel; set => Set(ref mainModel, value); }
+        private MainWindowViewModel? mainModel;
+        public MainWindowViewModel? MainModel { get => mainModel; set => Set(ref mainModel, value); }
 
-        private readonly RealEstateDB DataBase;
+        private readonly RealEstateDB? DataBase;
         private readonly IBuildingCount BuildingCountService;
 
         #region Counts
@@ -81,7 +81,7 @@ namespace Agentstvo23.ViewModels
 
         #endregion
 
-        public NavigationViewModel(RealEstateDB db, IBuildingCount buildingCountService)
+        public NavigationViewModel(RealEstateDB? db, IBuildingCount buildingCountService)
         {
             DataBase = db;
             BuildingCountService = buildingCountService;
@@ -90,6 +90,7 @@ namespace Agentstvo23.ViewModels
 
         public async Task LoadAsync()
         {
+            if (DataBase == null) return;
             CountEstate = await BuildingCountService.GetCountAsync();
             CountNonResidentialBuilding = await BuildingCountService.GetNonResidentalCountAsync();
             CountResidentialBuilding = await BuildingCountService.GetResidentalCountAsync();

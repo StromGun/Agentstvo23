@@ -92,9 +92,9 @@ namespace Agentstvo23.Infrastructure.Commands
             if (_CanExecute?.Invoke(value!) == false) return;
             try
             {
-                execute_action.Invoke(value!);
+                execute_action?.Invoke(value!);
             }
-            catch (Exception error)
+            catch (Exception? error)
             {
          
             }

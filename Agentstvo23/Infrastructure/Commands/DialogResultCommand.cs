@@ -5,13 +5,13 @@ namespace Agentstvo23.Infrastructure.Commands
 {
     class DialogResultCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         public bool? DialogResult { get; set; }
 
-        public bool CanExecute(object parameter) => App.CurrentWindow != null;
+        public bool CanExecute(object? parameter) => App.CurrentWindow != null;
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             if (!CanExecute(parameter)) return;
 

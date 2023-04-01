@@ -12,12 +12,12 @@ namespace Agentstvo23.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
         private string _title = "Agentstvo23";
-        private ViewModel currentView;
-        private User user = null;
+        private ViewModel? currentView;
+        private User? user = null;
 
         public string Title { get => _title; set => Set(ref _title, value); }
-        public ViewModel CurrentView { get => currentView; set => Set(ref currentView, value); }
-        public User User { get => user; set => Set(ref user, value); }
+        public ViewModel? CurrentView { get => currentView; set => Set(ref currentView, value); }
+        public User? User { get => user; set => Set(ref user, value); }
 
         public readonly NavigationViewModel NavigationVm;
         public readonly RealEstatesViewModel BuildingsVm;

@@ -11,17 +11,17 @@ namespace Agentstvo23.ViewModels
     internal class AuthorizationViewModel : ViewModel
     {
         private string _title = "Авторизация";
-        private string login;
-        private string password;
+        private string? login;
+        private string? password;
 
 
-        private readonly RealEstateDB DataBase;
+        private readonly RealEstateDB? DataBase;
 
         public MainWindowViewModel mainModel { get; set; }
 
         public string Title { get => _title; set => Set(ref _title, value); }
-        public string Login { get => login; set => Set(ref login, value); }
-        public string Password { get => password; set => Set(ref password, value); }
+        public string? Login { get => login; set => Set(ref login, value); }
+        public string? Password { get => password; set => Set(ref password, value); }
 
 
         #region Commands
@@ -30,6 +30,7 @@ namespace Agentstvo23.ViewModels
             ??= new(CanAuthorizationExecuted);
         private void CanAuthorizationExecuted()
         {
+            if (DataBase == null) return;
             var user = DataBase.Users.FirstOrDefault(p => p.Login.Equals(Login) && p.Password.Equals(Password));
             if (user != null)
             {
@@ -42,7 +43,7 @@ namespace Agentstvo23.ViewModels
         #endregion
 
 
-        public AuthorizationViewModel(RealEstateDB dB)
+        public AuthorizationViewModel(RealEstateDB? dB)
         {
             DataBase = dB;
         }
